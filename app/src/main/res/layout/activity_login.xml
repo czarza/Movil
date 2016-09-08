@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.czarzap.cobroMovil.login.LoginActivity"
+    android:id="@+id/scrollView2" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:src="@drawable/ic_intsol_sifi"
+            android:layout_marginBottom="0dp"
+            android:contentDescription="@string/logo_intsol"
+            android:layout_marginTop="50dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/etPassword"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:hint="@string/contrase_a"
+            android:textSize="20sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <com.dd.CircularProgressButton
+            android:id="@+id/bLogin"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/primary_text_dark"
+            android:textSize="20sp"
+            app:cpb_selectorIdle="@drawable/button"
+            app:cpb_colorIndicator="@color/primary"
+            app:cpb_colorProgress="@color/gray_bg"
+            app:cpb_cornerRadius="12dp"
+            app:cpb_iconComplete="@mipmap/ic_action_accept"
+            app:cpb_iconError="@mipmap/ic_action_cancel"
+            app:cpb_textIdle="INGRESAR"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:gravity="center|center_vertical"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/no_tienes_cuenta_registrate"
+            android:id="@+id/tvRegister"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
+
+</ScrollView>

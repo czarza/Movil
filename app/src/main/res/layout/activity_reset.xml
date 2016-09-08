@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.czarzap.cobromovil.login.ResetActivity">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView4">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Cambiar Contraseña"
+                android:id="@+id/textView2"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/Contraseña2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    android:hint="Contraseña"
+                    android:id="@+id/etPass2"
+                    android:layout_centerVertical="true"
+                    android:layout_alignStart="@+id/etPass" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/Contraseña"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView2"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    android:hint="Contraseña"
+                    android:id="@+id/etPass" />
+            </android.support.design.widget.TextInputLayout>
+
+            <com.dd.CircularProgressButton
+                android:id="@+id/bCambiar"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:textColor="@android:color/primary_text_dark"
+                android:textSize="18sp"
+                app:cpb_selectorIdle="@drawable/button"
+                app:cpb_colorIndicator="@color/primary"
+                app:cpb_colorProgress="@color/gray_bg"
+                app:cpb_cornerRadius="12dp"
+                app:cpb_iconComplete="@mipmap/ic_action_accept"
+                app:cpb_iconError="@mipmap/ic_action_cancel"
+                app:cpb_textIdle="CAMBIAR"
+                android:layout_gravity="center"
+                android:layout_marginBottom="0dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="300dp" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
