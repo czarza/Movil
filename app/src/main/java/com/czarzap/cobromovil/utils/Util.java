@@ -137,13 +137,15 @@ public class Util {
 
     public String tipoComercio(String tipo){
         String campo = null;
-        switch(tipo){
-            case "F": campo = "Fijo";
-                break;
-            case "S": campo = "Semi-Fijo";
-                break;
-            case "A": campo = "Ambulante";
-                break;
+        if (tipo.equals("F")) {
+            campo = "Fijo";
+
+        } else if (tipo.equals("S")) {
+            campo = "Semi-Fijo";
+
+        } else if (tipo.equals("A")) {
+            campo = "Ambulante";
+
         }
         return campo;
     }

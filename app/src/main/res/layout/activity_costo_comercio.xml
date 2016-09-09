@@ -56,8 +56,8 @@
 
         <com.dd.CircularProgressButton
             android:id="@+id/circularButton1"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="@color/cpb_white"
             android:textSize="18sp"
             app:cpb_selectorIdle="@drawable/button"
@@ -71,8 +71,8 @@
 
     <com.dd.CircularProgressButton
         android:id="@+id/bImprimir"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textColor="@color/cpb_white"
         android:textSize="18sp"
         app:cpb_selectorIdle="@drawable/button"
@@ -89,7 +89,7 @@
     <com.dd.CircularProgressButton
         android:id="@+id/bRegresar"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:textColor="@color/cpb_white"
         android:textSize="18sp"
         app:cpb_selectorIdle="@drawable/button"

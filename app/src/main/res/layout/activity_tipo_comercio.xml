@@ -22,8 +22,8 @@
         android:layout_weight=".375" />
 
     <Button
-        android:layout_width="230dp"
-        android:layout_height="45sp"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
         android:id="@+id/bEstablecido"
         android:layout_gravity="center_horizontal"
         android:textSize="20sp"
@@ -31,12 +31,14 @@
         android:drawableLeft="@drawable/ic_face_black"
         android:background="@drawable/orange_blue_selector"
         android:textColor="@color/basic_item_bg"
-        android:textAlignment="center"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="40dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:elegantTextHeight="false" />
 
     <Button
-        android:layout_width="230dp"
-        android:layout_height="45sp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/bSemiFijo"
         android:layout_gravity="center_horizontal"
         android:textSize="20sp"
@@ -45,6 +47,23 @@
         android:background="@drawable/orange_blue_selector"
         android:textColor="@color/basic_item_bg"
         android:textAlignment="center"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="15dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp" />
+
+    <Button
+        android:layout_width="189dp"
+        android:layout_height="40dp"
+        android:id="@+id/bCorte"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp"
+        android:text="Corte"
+        android:drawableLeft="@drawable/ic_corte"
+        android:background="@drawable/orange_blue_selector"
+        android:textColor="@color/basic_item_bg"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:paddingRight="0dp"
+        android:paddingLeft="30dp" />
 
 </LinearLayout>

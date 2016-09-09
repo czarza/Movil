@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="barcode_tag">
+        <item>Barcode</item>
+        <item>QRCode</item>
+    </string-array>
+
+    <string-array name="hs_barcode_item">
+        <item>Barcode</item>
+        <item>UPC-A</item>
+        <!--<item>UPC-E</item>-->
+        <item>EAN13</item>
+        <item>EAN8</item>
+        <item>CODE39</item>
+        <item>ITF</item>
+        <item>CODABAR</item>
+        <!--<item>CODE93</item>-->
+        <item>CODE128</item>
+        <item>QRCode</item>
+        <item>QRcode</item>
+    </string-array>
+
+    <string-array name="label_barcode_item">
+        <item>Barcode</item>
+        <item>UPC-A</item>
+        <!--<item>UPC-E</item>-->
+        <item>EAN13</item>
+        <item>EAN8</item>
+        <item>CODE39</item>
+        <item>CODABAR</item>
+        <!--<item>CODE93</item>-->
+        <item>CODE128</item>
+    </string-array>
+
+    <integer-array name="indicator_color">
+        <item>@color/tag_blue_bg</item>
+        <item>@color/tag_orange_bg</item>
+        <item>@color/tag_red_bg</item>
+        <item>@color/tag_green_bg</item>
+        <item>@color/tag_blue_light_bg</item>
+    </integer-array>
+
+    <string-array name="label_text_print_font">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>TST24.BF2</item>
+        <item>TSS24.BF2</item>
+        <item>K</item>
+    </string-array>
+
+    <integer-array name="label_text_printer_spacing_x">
+        <item>4</item>
+        <item>3</item>
+        <item>0</item>
+        <item>2</item>
+        <item>5</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+
+    <integer-array name="label_text_printer_letter_height">
+        <item>12</item>
+        <item>20</item>
+        <item>24</item>
+        <item>32</item>
+        <item>48</item>
+        <item>19</item>
+        <item>27</item>
+        <item>25</item>
+        <item>24</item>
+        <item>24</item>
+        <item>24</item>
+    </integer-array>
+
+    <integer-array name="label_text_printer_letter_width">
+        <item>8</item>
+        <item>12</item>
+        <item>16</item>
+        <item>24</item>
+        <item>32</item>
+        <item>14</item>
+        <item>21</item>
+        <item>14</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+    </integer-array>
+
+</resources>

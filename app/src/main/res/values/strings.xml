@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sifi Receptoria</string>
+    <string name="go_back">Atras</string>
+    <string name="insert_sdcard_tip">Inserte SDCard</string>
+    <string name="tip_input_text">Inserte Texto</string>
+    <string name="confirm">Esta Seguro?</string>
+    <string name="yes">Si</string>
+    <string name="cancel">Cancelar</string>
+    <string name="tip_confirm_exit">Salir?</string>
+    <string name="connected">C </string>
+    <string name="unconnected">C </string>
+    <string name="fail_connect">Fallo de Conexion</string>
+    <string name="success_connect">Conexion Existosa</string>
+    <string name="tip_connect">Impresora Desconectada</string>
+    <string name="tip_disconnected">Se Perdio la conexion</string>
+    <string name="model">Mode：GDP12</string>
+    <string name="specifications">Norms：58mm\\80mm</string>
+    <string name="specification">Norms：</string>
+    <string name="print">Imprimir</string>
+    <string name="print_test_page">Prueba</string>
+
+    <string name="mainAct">Sifi Receptoria</string>
+
+    <string name="label">LB</string>
+    <string name="label_text_print">LB Text</string>
+    <string name="label_barcode_print">LB Barcode</string>
+    <string name="label_templet_print">LB Templet</string>
+    <string name="label_picture_print">LB Image</string>
+    <string name="label_web_print">LB Web</string>
+
+    <string name="heat_sensitive">TS</string>
+    <string name="heat_sensitive_text_print">TS Text</string>
+    <string name="heat_sensitive_barcode_print">TS Barcode</string>
+    <string name="heat_sensitive_templet_print">TS Templet</string>
+    <string name="heat_sensitive_picture_print">TS Image</string>
+    <string name="heat_sensitive_web_print">TS Web</string>
+
+    <string name="wifi_set">WIFI SET</string>
+    <string name="wifi_mode">WIFI MODE</string>
+    <string name="wifi_name">WIFI NAME:</string>
+    <string name="wifi_password">WIFI PassWord:</string>
+    <string name="wifi_confirm">CONFIRM SET THIS WIFI</string>
+    <string name="wifi_refresh">REFRESH WIFI</string>
+    <string name="wifi_save_change">SAVE CHANGE</string>
+
+    <string name="wifi_net_set">WIFI NET SET</string>
+    <string name="wifi_ip">IP</string>
+    <string name="wifi_ip1">IP:</string>
+    <string name="wifi_dhcp">DHCP</string>
+    <string name="wifi_dhcp1">DHCP:</string>
+    <string name="wifi_mask">Sub Mask:</string>
+    <string name="wifi_gateway">GateWay:</string>
+    <string name="wifi_disable">Disable</string>
+    <string name="wifi_enable">Enable</string>
+
+    <string name="port_type">Tipo:</string>
+    <string name="bluetooth">BT</string>
+    <string name="usb">USB</string>
+    <string name="wifi">WIFI</string>
+    <string name="connect">Conectar</string>
+    <string name="tip_choose_bluetooth_device">Elige un dispositivo Bluetooth</string>
+    <string name="tip_choose_usb_device">Dispositivo USB</string>
+    <string name="tip_choose_wifi_device">Dispositivo WIFI</string>
+    <string name="tip_disconnect">Break Linking？</string>
+    <string name="cut_all">Full Cut Test</string>
+    <string name="half_cut">Half Cut Test</string>
+    <string name="beeper_test">Buzzer Test</string>
+    <string name="cash_box_test">Drawer Test</string>
+
+
+    <string name="ask_for_saving_setting">Save？</string>
+
+    <string name="device_does_not_support_bluetooth">No soporta Bluetooth</string>
+    <string name="choose_bluetooth_device">Dispositivos Bluetooth</string>
+    <string name="paired_devices">Dispositivos Asociados</string>
+    <string name="tip_have_no_paired_device">Is Paired Device？</string>
+    <string name="tip_have_no_found_bluetooth_device">No se encontraron Dispositivos</string>
+    <string name="search_device">Buscar Dispositivos</string>
+    <string name="choose_usb_device">Opt USB Device</string>
+    <string name="print_device">Dispositivo</string>
+    <string name="tip_insert_usb_device">Please Insert USB Device</string>
+    <string name="choose_wifi_device">Opt WIFI Device</string>
+    <string name="input_ip">Input IP</string>
+    <string name="input_port">Input Port</string>
+    <string name="tip_ip_input">Input IP</string>
+    <string name="tip_port_input">Input Port</string>
+    <string name="tip_input_correct_ip">Input Correct IP</string>
+    <string name="tip_choose_address">Opt Device\'s Address</string>
+    <string name="click_to_choose">Click To Choose</string>
+    <string name="tip_have_no_found_wifi_device">No Found WIFI Devices</string>
+
+    <string name="tip_label_width_overstep">OverWidth</string><!--新增-->
+
+    <string name="barcode_print">BarcodePrint</string>
+    <string name="barcode">Barcode</string>
+    <string name="UPC_A">UPC-A</string>
+    <string name="UPC_E">UPC-E</string>
+    <string name="EAN13">EAN13</string>
+    <string name="EAN8">EAN8</string>
+    <string name="CODE39">CODE39</string>
+    <string name="ITF">ITF</string>
+    <string name="CODABAR">CODABAR</string>
+    <string name="CODE93">CODE93</string>
+    <string name="CODE128">CODE128</string>
+    <string name="QR_CODE">QRcode</string>
+
+    <string name="tip_preview">Preview:</string>
+
+    <string name="templet1">Templet1</string>
+    <string name="rt_technology">TongtaTech</string>
+    <string name="content_company_name">Xiamen Rongta Technology Co.,Ltd</string>
+    <string name="content_address">address:Xiamen Huli District GaoQi North Road No.195</string>
+    <string name="content_tel">tel:5925666129</string>
+    <string name="content_email">email:sales@rongtatech.com</string>
+
+    <string name="image_print">Print Image</string>
+    <string name="click_to_upload_image">Upload Image</string>
+    <string name="tip_upload_image">No image,Firstly Upload a image</string>
+    <string name="choose_picture_position">Image Position</string>
+    <string name="picture">Photograph</string>
+    <string name="album">Album</string>
+
+    <string name="web_page_print">Web Page</string>
+    <string name="entry_preview">Preview Entry</string>
+    <string name="tip_open_web_page">Please Open Web Page</string>
+
+    <string name="delete_saved_content">Delete</string>
+    <string name="ask_for_deleting">Ask for delete data？</string>
+    <string name="delete">Delete</string>
+    <string name="configurar_impresora">CONFIGURAR IMPRESORA</string>
+    <string name="escanear_qr">ESCANEAR QR</string>
+    <string name="semi_fijo">Semi-Fijo</string>
+    <string name="ultima_licencia">Ultima Licencia</string>
+    <string name="ruta">Ruta</string>
+    <string name="cobrar">Cobrar</string>
+    <string name="numero_de_control">Numero de Control</string>
+    <string name="logo_intsol">logo intsol</string>
+    <string name="propietario">Propietario</string>
+    <string name="domicilio">Domicilio Notificaciones</string>
+    <string name="app_label">Search</string>
+    <string name="search_hint">Search</string>
+    <string name="search">search</string>
+    <string name="action_settings">action</string>
+    <string name="estado_de_cuenta">ESTADO DE CUENTA</string>
+    <string name="no_tienes_cuenta_registrate">¿No tienes cuenta? Registrate</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="status_comercio">Status Comercio</string>
+    <string name="tarjeta_circulacion"># Tarjeta</string>
+    <string name="conductor">Conductor</string>
+    <string name="placa">Placa</string>
+    <string name="imagen_conductor">Imagen Conductor</string>
+    <string name="ver_imagen">VER IMAGEN</string>
+
+</resources>

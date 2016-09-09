@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/fondo"
     tools:context="com.czarzap.cobromovil.login.ResetActivity">
 
 
@@ -68,8 +69,8 @@
 
             <com.dd.CircularProgressButton
                 android:id="@+id/bCambiar"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textColor="@android:color/primary_text_dark"
                 android:textSize="18sp"
                 app:cpb_selectorIdle="@drawable/button"
@@ -83,7 +84,7 @@
                 android:layout_marginBottom="0dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="300dp" />
+                android:layout_marginTop="250dp" />
 
         </RelativeLayout>
     </ScrollView>

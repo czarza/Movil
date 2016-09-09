@@ -15,6 +15,7 @@ public class TipoComercioActivity extends Activity {
 
     private Button bSemifijo;
     private Button bFijo;
+    private Button bCorte;
     private Integer empresa;
     int onStartCount = 0;
 
@@ -39,7 +40,7 @@ public class TipoComercioActivity extends Activity {
         empresa = manager.getEmpresa();
         bFijo = (Button) findViewById(R.id.bEstablecido);
         bSemifijo     = (Button) findViewById(R.id.bSemiFijo);
-
+        bCorte = (Button) findViewById(R.id.bCorte);
 
         loadActivity();
     }
@@ -71,6 +72,12 @@ public class TipoComercioActivity extends Activity {
                 Intent comercioIntent = new Intent(TipoComercioActivity.this,ListaRutasActivity.class);
                 comercioIntent.putExtras ( args );
                 TipoComercioActivity.this.startActivity(comercioIntent);
+            }
+        });
+        bCorte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 

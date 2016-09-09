@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.czarzap.cobromovil.rtprinter">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.hardware.usb.host" />
+    <uses-permission android:name="android.hardware.usb.accessory" />
+
+    <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+ App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+    -->
+    <meta-data
+        android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" />
+
+    <application
+        android:name="android.support.multidex.MultiDexApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_sifi"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <!-- <provider android:name=".search.RecentSuggestionsProvider" -->
+        <!-- android:authorities="br.com.edsilfer.content_provider.RecentSuggestionsProvider" /> -->
+
+        <provider
+            android:name="com.czarzap.cobromovil.search.CustomSuggestionsProvider"
+            android:authorities="br.com.edsilfer.content_provider.CustomSuggestionsProvider" />
+
+        <activity
+            android:name="com.czarzap.cobromovil.login.LoginActivity"
+            android:configChanges="orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.czarzap.cobromovil.main.HeatSensitiveActivity"
+            android:configChanges="orientation"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.czarzap.cobromovil.login.RegisterActivity" />
+        <activity android:name="com.czarzap.cobromovil.menu.MenuActivity" />
+        <activity android:name="com.czarzap.cobromovil.menu.LeerQrActivity" />
+        <activity android:name="com.czarzap.cobromovil.menu.ListaComercioActivity" />
+        <activity android:name="com.czarzap.cobromovil.menu.ListaRutasActivity" />
+        <activity android:name="com.czarzap.cobromovil.menu.TipoComercioActivity" />
+        <activity android:name="com.czarzap.cobromovil.datos.DatosAmbulante" />
+        <activity android:name="com.czarzap.cobromovil.datos.DatosSemiFijo" />
+        <activity android:name="com.czarzap.cobromovil.datos.DatosEstablecido" />
+        <activity android:name="com.czarzap.cobromovil.pagos.PagosAmbulante" />
+        <activity android:name="com.czarzap.cobromovil.pagos.PagosSemiFijo" />
+        <activity
+            android:name="com.czarzap.cobromovil.search.BuscarContribuyente"
+            android:label="Buscar Contribuyente">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.czarzap.cobromovil.datos.DatosMotos" />
+        <activity android:name="com.czarzap.cobromovil.menu.VerImagenActivity" />
+        <activity android:name="com.czarzap.cobromovil.login.ResetActivity" />
+        <activity android:name="com.czarzap.cobromovil.corte.CorteActivity"></activity>
+    </application>
+
+</manifest>
