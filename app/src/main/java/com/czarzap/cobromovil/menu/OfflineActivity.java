@@ -123,7 +123,7 @@ public class OfflineActivity extends AppCompatActivity {
         FileOutputStream outputStream;
 
         try {
-            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            outputStream = getApplicationContext().openFileOutput(filename, Context.MODE_PRIVATE);
             outputStream.write(s.getBytes());
             outputStream.close();
         } catch (Exception e) {
