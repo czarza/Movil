@@ -1,6 +1,5 @@
 package com.czarzap.cobromovil.menu;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,18 +8,13 @@ import android.widget.Button;
 
 import com.czarzap.cobromovil.DB.DatabaseManager;
 import com.czarzap.cobromovil.beans.InComercios;
+import com.czarzap.cobromovil.beans.Rutas;
 import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.search.Contribuyente;
 import com.czarzap.cobromovil.service.OfflineService;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.czarzap.cobromovil.utils.OfflineUtil;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,9 +26,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class OfflineActivity extends AppCompatActivity {
     int onStartCount = 0;
     Button bDownload,bUpload;
-    Integer empresa;
+    Integer empresa,numero;
     private OfflineService service;
     List<InComercios> comercios;
+    List<Contribuyente> contribuyentes;
+    List<Rutas> rutas;
+    OfflineUtil util = new OfflineUtil();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +64,7 @@ public class OfflineActivity extends AppCompatActivity {
     private void initViews(){
         DatabaseManager manager = new DatabaseManager(this);
         empresa = manager.getEmpresa();
-
+        numero = manager.getAgente();
         bDownload = (Button) findViewById(R.id.bDescarga);
         bUpload = (Button) findViewById(R.id.bCarga);
 
@@ -89,67 +86,60 @@ public class OfflineActivity extends AppCompatActivity {
         bUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    upload();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
             }
         });
     }
-    static String fileName = "comercios.txt";
     private void download(){
-    Call<List<InComercios>> call = service.download(empresa);
-      call.enqueue(new Callback<List<InComercios>>() {
-          @Override
-          public void onResponse(Call<List<InComercios>> call, Response<List<InComercios>> response) {
+    Call<List<InComercios>> call = service.downloadComercios(empresa,numero);
+        call.enqueue(new Callback<List<InComercios>>() {
+           @Override
+           public void onResponse(Call<List<InComercios>> call, Response<List<InComercios>> response) {
               comercios = response.body();
-              initDownload(comercios);
-          }
+              util.initDownloadComercios(comercios,getApplicationContext());
+           }
 
-          @Override
-          public void onFailure(Call<List<InComercios>> call, Throwable t) {
+           @Override
+           public void onFailure(Call<List<InComercios>> call, Throwable t) {
+               Log.d("Error Comercio",t.getMessage());
+           }
+        });
 
-          }
-      });
-    }
+    Call<List<Contribuyente>> callContribuyente = service.downloadContribuyentes(empresa,numero);
+        callContribuyente.enqueue(new Callback<List<Contribuyente>>() {
+            @Override
+            public void onResponse(Call<List<Contribuyente>> call, Response<List<Contribuyente>> response) {
+                contribuyentes = response.body();
+                util.initDownloadContribuyentes(contribuyentes,getApplicationContext());
+            }
 
-    private void initDownload(List<InComercios> comercios){
-        String filename = "myfile.txt";
+            @Override
+            public void onFailure(Call<List<Contribuyente>> call, Throwable t) {
+                Log.d("Error Contribuyentes",t.getMessage());
+            }
+        });
 
-        Gson gson = new Gson();
-        String s = gson.toJson(comercios);
+    Call<List<Rutas>> callRutas = service.downloadRutas(empresa);
+        callRutas.enqueue(new Callback<List<Rutas>>() {
+            @Override
+            public void onResponse(Call<List<Rutas>> call, Response<List<Rutas>> response) {
+                rutas = response.body();
+                util.initDownloadRutas(rutas,getApplicationContext());
+            }
 
-        FileOutputStream outputStream;
+            @Override
+            public void onFailure(Call<List<Rutas>> call, Throwable t) {
+                Log.d("Error Rutas",t.getMessage());
+            }
+        });
 
         try {
-            outputStream = getApplicationContext().openFileOutput(filename, Context.MODE_PRIVATE);
-            outputStream.write(s.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
+            util.rutasData(getApplicationContext());
+            util.comerciosData(getApplicationContext());
+            util.contribuyentesData(getApplicationContext());
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
-    private void upload() throws IOException {
-
-        FileInputStream fis = getApplicationContext().openFileInput("myfile.txt");
-        InputStreamReader isr = new InputStreamReader(fis);
-        BufferedReader bufferedReader = new BufferedReader(isr);
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            sb.append(line);
-        }
-
-        String json = sb.toString();
-        Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<InComercios>>(){}.getType();
-        List<InComercios> c = gson.fromJson(json, listType);
-        for(InComercios comercio : c){
-            Log.d("Comercio",comercio.getCom_control().toString());
-        }
-    }
-
-
-
 }

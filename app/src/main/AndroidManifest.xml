@@ -81,7 +81,7 @@
         <activity android:name="com.czarzap.cobromovil.corte.ReporteActivity" />
         <activity android:name="com.czarzap.cobromovil.pagos.VistaPagoSemiFijo" />
         <activity android:name="com.czarzap.cobromovil.menu.IngresosActivity" />
-        <activity android:name="com.czarzap.cobromovil.menu.OfflineActivity"></activity>
+        <activity android:name="com.czarzap.cobromovil.menu.OfflineActivity" />
     </application>
 
 </manifest>
