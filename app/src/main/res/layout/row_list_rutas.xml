@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:layout_marginLeft="5dp"
+    card_view:cardBackgroundColor="@color/gray_bg"
     android:layout_marginRight="5dp"
     card_view:cardCornerRadius="5dp">
     <LinearLayout
@@ -14,8 +15,8 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/tvRuta"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

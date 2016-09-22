@@ -43,7 +43,8 @@ public class PagosAmbulante extends Activity {
         int onStartCount = 0;
         private final int handlerSign = 7173;
 
-        Integer empresa, control, tarifa, contribuyente;
+        Integer empresa, control,  contribuyente;
+        Double tarifa;
         String tipo, propietario, quienOcupa, nombreEmpresa, domicilioEmpresa, rfcEmpresa;
         HsBluetoothPrintDriver hsBluetoothPrintDriver = HsBluetoothPrintDriver.getInstance();
         private Bitmap bmp;
@@ -94,7 +95,7 @@ public class PagosAmbulante extends Activity {
             tipo = getIntent().getExtras().getString("tipo");
             propietario = getIntent().getExtras().getString("propietario");
             quienOcupa = getIntent().getExtras().getString("quien");
-            tarifa = getIntent().getExtras().getInt("tarifa");
+            tarifa = getIntent().getExtras().getDouble("tarifa");
             etCosto = (EditText) findViewById(R.id.etCosto);
             etNotas = (EditText) findViewById(R.id.etNotas);
             circularButton1 = (CircularProgressButton) findViewById(R.id.circularButton1);

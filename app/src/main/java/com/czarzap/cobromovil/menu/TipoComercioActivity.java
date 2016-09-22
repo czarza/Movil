@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.czarzap.cobromovil.DB.DatabaseManager;
+import com.czarzap.cobromovil.corte.ReporteActivity;
 import com.czarzap.cobromovil.rtprinter.R;
-import com.czarzap.cobromovil.main.HeatSensitiveActivity;
 import com.czarzap.cobromovil.search.BuscarContribuyente;
 
 public class TipoComercioActivity extends Activity {
@@ -77,7 +77,11 @@ public class TipoComercioActivity extends Activity {
         bCorte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle args = new Bundle();
+                args.putInt("empresa",empresa);
+                Intent comercioIntent = new Intent(TipoComercioActivity.this,ReporteActivity.class);
+                comercioIntent.putExtras ( args );
+                TipoComercioActivity.this.startActivity(comercioIntent);
             }
         });
 

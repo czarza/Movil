@@ -22,6 +22,8 @@ import com.czarzap.cobromovil.service.DatosComercioService;
 import com.czarzap.cobromovil.utils.ToastUtil;
 import com.dd.CircularProgressButton;
 
+import java.math.BigDecimal;
+
 import driver.Contants;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,10 +41,11 @@ public class DatosAmbulante extends Activity {
     private EditText etQuien;
     private EditText etControl;
     private EditText etLicencia;
-    private CircularProgressButton bSiguiente,bEstado;
+    private CircularProgressButton bSiguiente;
     private Switch sStatus;
     private InComercios comercio;
-    private Integer control,empresa,tarifa;
+    private Integer control,empresa;
+    private BigDecimal tarifa;
     private String tipo;
     private LinearLayout linearLayout;
     private Bundle args;
@@ -52,8 +55,8 @@ public class DatosAmbulante extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView( R.layout.activity_datos_establecido);
-        linearLayout = (LinearLayout) findViewById(R.id.LinearEstablecido) ;
+        setContentView( R.layout.activity_datos_ambulante);
+        linearLayout = (LinearLayout) findViewById(R.id.LinearAmbulante) ;
         onStartCount = 1;
         if (savedInstanceState == null) // 1st time
         {
@@ -85,15 +88,14 @@ public class DatosAmbulante extends Activity {
         empresa = Integer.valueOf(getIntent().getExtras().getString("empresa"));
         builder = new AlertDialog.Builder(this);
         DatabaseManager manager = new DatabaseManager(this);
-        etPropietario = (EditText) findViewById(R.id.etPropietario);  // Parse xml items to Class
-        etDomicilio = (EditText) findViewById(R.id.etDomicilio);
-        etColonia = (EditText) findViewById(R.id.etColonia);
-        etQuien = (EditText) findViewById(R.id.etQuien);
-        etControl = (EditText) findViewById(R.id.etControl);
-        etLicencia = (EditText) findViewById(R.id.etLicencia);
-        bSiguiente   = (CircularProgressButton) findViewById(R.id.bSiguiente);
-        bEstado   = (CircularProgressButton) findViewById(R.id.bEstado);
-        sStatus = (Switch) findViewById(R.id.sStatus);
+        etPropietario = (EditText) findViewById(R.id.aPropietario);  // Parse xml items to Class
+        etDomicilio = (EditText) findViewById(R.id.aDomicilio);
+        etColonia = (EditText) findViewById(R.id.aColonia);
+        etQuien = (EditText) findViewById(R.id.aQuien);
+        etControl = (EditText) findViewById(R.id.aControl);
+        etLicencia = (EditText) findViewById(R.id.aLicencia);
+        bSiguiente   = (CircularProgressButton) findViewById(R.id.aSiguiente);
+        sStatus = (Switch) findViewById(R.id.aStatus);
         comercio = new InComercios();
         if (RTApplication.getConnState() == Contants.UNCONNECTED) {
             ToastUtil.show(getApplicationContext(), "Impresora Desconectada");
@@ -110,17 +112,20 @@ public class DatosAmbulante extends Activity {
         loadActivity();
     }
     private void loadActivity(){
+        Log.d("EMPRESA",empresa.toString());
+        Log.d("control",control.toString());
+        Log.d("tipo",tipo);
         Call<InComercios> call = service.getComercio(empresa,control,tipo);
-
         call.enqueue(new Callback<InComercios>() {
             @Override
             public void onResponse(Call<InComercios> call, Response<InComercios> response) {
                 comercio = response.body();  // Obtener Clase
+                Log.d("Comercio",comercio.toString());
                 if(comercio.getCom_contribuyente() != null){
                     initComercio();
+
                 }
                 else{
-
                     builder.setIcon(android.R.drawable.ic_dialog_alert);
                     builder.setMessage("No existe el Comercio Ambulante").setTitle("ERROR").setCancelable(false).setPositiveButton("Aceptar", new DialogInterface.OnClickListener()
                     {
@@ -157,15 +162,14 @@ public class DatosAmbulante extends Activity {
         else sStatus.setChecked(false);
 
         linearLayout.setVisibility(View.VISIBLE);
-        bEstado.setVisibility(View.GONE);
         getTarifa();
+        bSiguiente.setVisibility(View.VISIBLE);
         bSiguiente.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(required(etPropietario)&&required(etDomicilio)&&required(etColonia)&&required(etQuien)) {
                         if(sStatus.isChecked()){
                             sendDatatoCobro();
-
                         }
                         else{Toast.makeText(getApplicationContext(), "El comercio debe de estar Activo", Toast.LENGTH_LONG).show();}
                     }
@@ -178,7 +182,6 @@ public class DatosAmbulante extends Activity {
 
 
     private void sendDatatoCobro(){
-
         comercio.setCom_nombre_propietario(etPropietario.getText().toString());
         comercio.setCom_domicilio_notificaciones(etDomicilio.getText().toString());
         comercio.setCom_colonia(etColonia.getText().toString());
@@ -198,7 +201,7 @@ public class DatosAmbulante extends Activity {
                 args.putString ( "propietario",fijo.getCom_nombre_propietario ());
                 args.putString("domicilio", fijo.getCom_domicilio_notificaciones () +" "+ fijo.getCom_colonia ());
                 args.putString ( "quien", fijo.getCom_ocupante ());
-                args.putInt ( "tarifa", tarifa);
+                if(tarifa != null) args.putDouble( "tarifa", tarifa.doubleValue());
                 Intent comercioIntent = new Intent(DatosAmbulante.this, PagosAmbulante.class);
                 comercioIntent.putExtras(args);
                 DatosAmbulante.this.startActivity(comercioIntent);
@@ -215,16 +218,16 @@ public class DatosAmbulante extends Activity {
     }
 
     private void getTarifa(){
-        Call<Integer> call_ = service.getTarifa(empresa,tipo,comercio.getCom_local());
-        call_.enqueue(new Callback<Integer>() {
+        Call<BigDecimal> call_ = service.getTarifa(empresa,tipo,comercio.getCom_local());
+        call_.enqueue(new Callback<BigDecimal>() {
             @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
+            public void onResponse(Call<BigDecimal> call, Response<BigDecimal> response) {
                 tarifa = response.body();
-                bSiguiente.setVisibility(View.VISIBLE);
+
             }
 
             @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
+            public void onFailure(Call<BigDecimal> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Error Tarifa, revise su conexion a Internet", Toast.LENGTH_LONG).show();
             }
         });

@@ -8,6 +8,7 @@ import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.multidex.MultiDex;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -49,7 +50,11 @@ public class RTApplication extends Application {
     public static String labelWidth = "30", labelHeight = "15";//宽高
     public static String labelCopies = "1";//份数
 
-
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
     public static int getConnState() {
         return mConnState;
     }

@@ -16,8 +16,9 @@ public class MenuActivity extends Activity{
 
     private static final int CAMERA_REQUEST = 1888;
     private  Button bLeerQr;
-    private  Button bComercio;
+    private  Button bIngresos;
     private  Button bConfigurar;
+    private  Button bOffline;
     private Integer empresa;
     int onStartCount = 0;
 
@@ -52,10 +53,10 @@ public class MenuActivity extends Activity{
     private void initView(){
         DatabaseManager manager = new DatabaseManager(this);
         empresa = manager.getEmpresa();
-
         bLeerQr     = (Button) findViewById(R.id.bLeerQr);
-        bComercio   = (Button) findViewById(R.id.bComercio);
+        bIngresos   = (Button) findViewById(R.id.bIngresos);
         bConfigurar   = (Button) findViewById(R.id.bConfigurar);
+        bOffline   = (Button) findViewById(R.id.bOffline);
 
         loadActivity();
     }
@@ -70,19 +71,16 @@ public class MenuActivity extends Activity{
             }
         });
 
-
-
-        bComercio.setOnClickListener(new View.OnClickListener() { // Click Comercio
+        bIngresos.setOnClickListener(new View.OnClickListener() { // Click Comercio
             @Override
             public void onClick(View v) {
                 Bundle args = new Bundle();
                 args.putInt("empresa",empresa);
-                Intent rutasIntent = new Intent(MenuActivity.this,TipoComercioActivity.class);
+                Intent rutasIntent = new Intent(MenuActivity.this,IngresosActivity.class);
                 rutasIntent.putExtras ( args );
                 MenuActivity.this.startActivity(rutasIntent);
             }
         });
-
 
         bConfigurar.setOnClickListener ( new View.OnClickListener () {
             @Override
@@ -94,6 +92,17 @@ public class MenuActivity extends Activity{
                 MenuActivity.this.startActivity(configurarIntent);
             }
         } );
+
+        bOffline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putInt("empresa",empresa);
+                Intent configurarIntent = new Intent(MenuActivity.this,OfflineActivity.class);
+                configurarIntent.putExtras ( args);
+                MenuActivity.this.startActivity(configurarIntent);
+            }
+        });
     }
 
 }

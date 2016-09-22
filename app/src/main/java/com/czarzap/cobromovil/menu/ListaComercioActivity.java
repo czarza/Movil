@@ -8,12 +8,11 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.czarzap.cobromovil.DB.DatabaseManager;
+import com.czarzap.cobromovil.adapter.AdapterSemiFijo;
 import com.czarzap.cobromovil.rtprinter.R;
-import com.czarzap.cobromovil.adapter.AdapterComercio;
 import com.czarzap.cobromovil.beans.InComercios;
 import com.czarzap.cobromovil.service.DatosComercioService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,9 +23,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ListaComercioActivity  extends Activity {
 
-    private AdapterComercio adapter;
+    private AdapterSemiFijo adapter;
     private DatosComercioService service;
     private ProgressBar progress;
+    private Integer empresa;
     Bundle args;
     int onStartCount = 0;
     @Override
@@ -43,8 +43,9 @@ public class ListaComercioActivity  extends Activity {
             onStartCount = 2;
         }
         progress=(ProgressBar)findViewById(R.id.progress_barcomercio);
-        final DatabaseManager manager = new DatabaseManager ( this );  // llamar a la Base
+        DatabaseManager manager = new DatabaseManager(this);
         String url = manager.getWebService ( 1 );
+        empresa = manager.getEmpresa();
         loadJSON(url);
 
     }
@@ -86,15 +87,13 @@ public class ListaComercioActivity  extends Activity {
     }
 
     private void conRutas(String ruta){
-        final ArrayList<String> rutas = getIntent ().getExtras ().getStringArrayList ( "rutas" );
-
-        Call<List<InComercios>> call = service.getListComerciosSemiFijo (ruta);
+        Call<List<InComercios>> call = service.getListComerciosSemiFijo (ruta,empresa);
 
         call.enqueue ( new Callback<List<InComercios>>() {
             @Override
             public void onResponse(Call<List<InComercios>> call, Response<List<InComercios>> response) {
                 List<InComercios> comercios = response.body ();
-                adapter = new AdapterComercio (comercios,args);
+                adapter = new AdapterSemiFijo(comercios);
                 initViews ();
             }
 

@@ -1,0 +1,136 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/LinearAmbulante"
+    tools:context="com.czarzap.cobromovil.datos.DatosAmbulante"
+    android:background="@drawable/fondo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="invisible">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <EditText
+            android:id="@+id/aPropietario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:hint="@string/propietario"
+            android:textAllCaps="true"
+            android:inputType="textCapCharacters" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/aDomicilio"
+            android:hint="@string/domicilio"
+            android:inputType="textCapCharacters" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/aColonia"
+            android:inputType="textCapCharacters"
+            android:hint="Colonia" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/aQuien"
+            android:hint="Quien Ocupa"
+            android:inputType="textCapCharacters"
+            android:layout_below="@+id/frente"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:gravity="center_vertical|center_horizontal">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/aControl"
+            android:textColor="@color/black"
+            android:hint="@string/numero_de_control"
+            android:enabled="false"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/aLicencia"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:hint="@string/ultima_licencia"
+            android:enabled="false"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status Comercio"
+        android:id="@+id/aStatus"
+        android:checked="true"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp" />
+
+
+
+    <com.dd.CircularProgressButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cobrar"
+        android:id="@+id/aSiguiente"
+        android:textColor="@color/cpb_white"
+        app:cpb_selectorIdle="@drawable/button"
+        app:cpb_colorIndicator="@color/primary"
+        app:cpb_colorProgress="@color/gray_bg"
+        app:cpb_cornerRadius="12dp"
+        app:cpb_iconComplete="@mipmap/ic_action_accept"
+        app:cpb_iconError="@mipmap/ic_action_cancel"
+        app:cpb_textIdle="COBRAR"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textSize="18sp"
+        android:visibility="invisible" />
+
+</LinearLayout>

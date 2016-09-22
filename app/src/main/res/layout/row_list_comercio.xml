@@ -9,7 +9,7 @@
     card_view:cardCornerRadius="5dp"
     android:id="@+id/card_view"
     card_view:cardBackgroundColor="@color/gray_bg">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
@@ -27,7 +27,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/tvDomicilio" />
+            android:id="@+id/tvDomicilio"
+            android:layout_below="@+id/tvPropietario"
+            android:layout_alignParentStart="true" />
 
-    </LinearLayout>
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:id="@+id/ok"
+            android:background="@drawable/ic_ok"
+            android:layout_gravity="right"
+            android:layout_alignBottom="@+id/tvDomicilio"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:visibility="invisible"
+            android:contentDescription="check"
+            android:padding="0dp"
+            android:nestedScrollingEnabled="true"
+            android:layout_margin="5dp" />
+
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

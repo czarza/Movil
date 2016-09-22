@@ -43,7 +43,8 @@ public class PagosSemiFijo extends Activity {
     int onStartCount = 0;
     private final int handlerSign = 7173;
 
-    Integer empresa, control, tarifa, contribuyente;
+    Integer empresa, control, contribuyente;
+    Double tarifa;
     String tipo, propietario, quienOcupa, ruta, nombreEmpresa, domicilioEmpresa, rfcEmpresa, rutaID;
     HsBluetoothPrintDriver hsBluetoothPrintDriver = HsBluetoothPrintDriver.getInstance();
     private EditText etCosto;
@@ -96,7 +97,7 @@ public class PagosSemiFijo extends Activity {
         quienOcupa = getIntent().getExtras().getString("quien");
         ruta = getIntent().getExtras().getString("ruta");
         rutaID = getIntent().getExtras().getString("rutaID");
-        tarifa = getIntent().getExtras().getInt("tarifa");
+        tarifa = getIntent().getExtras().getDouble("tarifa");
         etCosto = (EditText) findViewById(R.id.etCosto);
         etNotas = (EditText) findViewById(R.id.etNotas);
         bPagar = (CircularProgressButton) findViewById(R.id.circularButton1);
@@ -205,7 +206,7 @@ public class PagosSemiFijo extends Activity {
                         String agente = manager.getNombreAgente();       // obtener el nombre del Agente
                         util.pago(pagos,getApplicationContext(),hsBluetoothPrintDriver,
                                 nombreEmpresa,domicilioEmpresa,rfcEmpresa,agente,ruta,
-                                quienOcupa,contribuyente,control,propietario);
+                                quienOcupa,contribuyente,propietario);
 
             }
         });

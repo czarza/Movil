@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:gravity="center_horizontal"
+    android:background="@drawable/fondo">
+
+    <ImageView
+        android:layout_width="130dp"
+        android:id="@+id/imageView"
+        android:src="@mipmap/ic_sifi"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="107dp" />
+
+    <Button
+        android:text="PREDIAL"
+        android:id="@+id/bPredial"
+        android:drawableLeft="@drawable/ic_predial"
+        android:background="@drawable/orange_blue_selector"
+        android:textColor="@color/basic_item_bg"
+        android:layout_width="200dp"
+        android:textSize="18dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="40dp"
+        android:paddingLeft="5dp"
+        android:layout_height="48dp" />
+
+    <Button
+        android:text="AGUA"
+        android:layout_height="wrap_content"
+        android:id="@+id/bAgua"
+        android:drawableLeft="@drawable/ic_agua"
+        android:background="@drawable/orange_blue_selector"
+        android:textColor="@color/basic_item_bg"
+        android:layout_width="200dp"
+        android:textSize="18dp"
+        android:paddingLeft="5dp"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:text="COMERCIO"
+        android:layout_height="wrap_content"
+        android:id="@+id/bComercio"
+        android:drawableLeft="@drawable/ic_comercio"
+        android:background="@drawable/orange_blue_selector"
+        android:textColor="@color/basic_item_bg"
+        android:layout_width="200dp"
+        android:textSize="18dp"
+        android:paddingLeft="5dp"
+        android:layout_marginBottom="10dp" />
+</LinearLayout>

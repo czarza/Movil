@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 
-public class InComercio_cobro_movil {
+public class InComercio_cobro_movil implements Serializable {
 	private InComercio_nofijo_pagosPK id = new InComercio_nofijo_pagosPK();
 	 private BigDecimal cac_total;
 	 private String cac_fecha_pago;

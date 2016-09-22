@@ -4,6 +4,7 @@ import com.czarzap.cobromovil.beans.InComercios;
 import com.czarzap.cobromovil.beans.InMetaCampos;
 import com.czarzap.cobromovil.search.Contribuyente;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,16 +32,17 @@ public interface DatosComercioService {
 
     @FormUrlEncoded
     @POST("api/getListComercio.htm")
-    Call<List<InComercios>> getListComerciosSemiFijo(@Field("ruta") String ruta);
+    Call<List<InComercios>> getListComerciosSemiFijo(@Field("ruta") String ruta,
+                                                     @Field("empresa") Integer empresa);
 
     @POST("api/getListAmbulantes.htm")
     Call<List<InComercios>> getListAmbulantes();
 
     @FormUrlEncoded
     @POST("api/getTarifa.htm")
-    Call<Integer> getTarifa(@Field("empresa") Integer empresa,
-                           @Field("tipo") String tipo,
-                           @Field("local") String local);
+    Call<BigDecimal> getTarifa(@Field("empresa") Integer empresa,
+                               @Field("tipo") String tipo,
+                               @Field("local") String local);
 
     @FormUrlEncoded
     @POST("api/getContribuyentes.htm")

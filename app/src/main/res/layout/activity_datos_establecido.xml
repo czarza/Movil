@@ -122,26 +122,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp" />
 
-
-
-    <com.dd.CircularProgressButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cobrar"
-        android:id="@+id/bSiguiente"
-        android:textColor="@color/cpb_white"
-        app:cpb_selectorIdle="@drawable/button"
-        app:cpb_colorIndicator="@color/primary"
-        app:cpb_colorProgress="@color/gray_bg"
-        app:cpb_cornerRadius="12dp"
-        app:cpb_iconComplete="@mipmap/ic_action_accept"
-        app:cpb_iconError="@mipmap/ic_action_cancel"
-        app:cpb_textIdle="COBRAR"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:textSize="18sp"
-        android:visibility="invisible" />
-
     <com.dd.CircularProgressButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

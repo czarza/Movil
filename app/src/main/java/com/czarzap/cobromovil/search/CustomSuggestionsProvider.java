@@ -118,7 +118,6 @@ public class CustomSuggestionsProvider extends ContentProvider {
                 @Override
                 public void onFailure(Call<List<Contribuyente>> call, Throwable t) {
                     Log.d("Error Co",t.getMessage());
-                    Log.d("Error Co",t.getCause().toString());
                 }
             });
         }

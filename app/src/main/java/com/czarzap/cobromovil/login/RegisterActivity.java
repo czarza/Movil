@@ -1,6 +1,5 @@
 package com.czarzap.cobromovil.login;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -69,9 +68,11 @@ public class RegisterActivity extends Activity {
     }
 
     private void initViews(){
+
+
         Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
-                .baseUrl("https://www.sifi.com.mx:8443/SifiReceptoria/")
-//                .baseUrl("http://192.168.0.13:8081/SifiReceptoria/")
+//                .baseUrl("https://www.sifi.com.mx:8443/SifiReceptoria/")
+                .baseUrl("http://192.168.0.13:8081/SifiReceptoria/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -157,12 +158,16 @@ public class RegisterActivity extends Activity {
                 inAgentesMoviles.getAm_nombre(),
                 inAgentesMoviles.getAm_cel(),
                 inAgentesMoviles.getAm_password(), new Date());
+
         call.enqueue(new Callback<List<InWebServices>>() {
             @Override
             public void onResponse(Call<List<InWebServices>> call, Response<List<InWebServices>> response) {   // En caso de que fue exitoso
                 List<InWebServices> webServices = response.body();   // Obtener la respuesta y castearlo a una Clase
 
-                for(InWebServices webService: webServices){
+
+
+
+                 for(InWebServices webService: webServices){
                     empresa = webService.getWs_empresa();
                     manager.insertarWebService(webService);                      // Insertar la lista de  WebServices en la base de datos
                 }

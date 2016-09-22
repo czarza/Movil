@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@color/rippleEffectWaveColor"
+    tools:ignore="NewApi">
+    <!--<item android:id="@android:id/mask"-->
+        <!--tools:targetApi="lollipop">-->
+        <!--<shape-->
+            <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:shape="rectangle"-->
+            <!--android:padding="10dp">-->
+
+            <!--<solid android:color="@color/rippleEffectMaskColor"/>-->
+
+            <!--<corners-->
+                <!--android:radius="2dp"-->
+                <!--android:bottomRightRadius="30dp"-->
+                <!--android:bottomLeftRadius="0dp"-->
+                <!--android:topLeftRadius="0dp"-->
+                <!--android:topRightRadius="30dp"/>-->
+        <!--</shape>-->
+    <!--</item>-->
+</ripple>

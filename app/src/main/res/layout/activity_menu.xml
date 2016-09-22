@@ -22,8 +22,8 @@
         android:layout_weight="0.46" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
         android:id="@+id/bLeerQr"
         android:drawableLeft="@drawable/ic_qr"
         android:layout_marginTop="40dp"
@@ -33,25 +33,25 @@
         android:background="@drawable/orange_blue_selector"
         android:textColor="@color/basic_item_bg"
         android:paddingLeft="5dp"
-        android:paddingRight="30dp"
+        android:paddingRight="20dp"
         android:layout_gravity="center_horizontal" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Comercio"
-        android:id="@+id/bComercio"
-        android:drawableLeft="@drawable/ic_shop_cart"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:text="INGRESOS"
+        android:id="@+id/bIngresos"
+        android:drawableLeft="@drawable/ic_ingresos"
         android:layout_gravity="center_horizontal"
         android:textSize="18dp"
         android:background="@drawable/orange_blue_selector"
         android:textColor="@color/basic_item_bg"
-        android:paddingLeft="5dp"
-        android:paddingRight="30dp" />
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
         android:text="CONFIGURAR"
         android:id="@+id/bConfigurar"
         android:drawableLeft="@drawable/ic_printer"
@@ -61,7 +61,22 @@
         android:background="@drawable/orange_blue_selector"
         android:textColor="@color/basic_item_bg"
         android:paddingLeft="5dp"
-        android:paddingRight="10dp" />
+        android:paddingRight="20dp" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:text="OFFLINE"
+        android:id="@+id/bOffline"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/ic_offline"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18dp"
+        android:background="@drawable/orange_blue_selector"
+        android:textColor="@color/basic_item_bg"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp" />
+
 
 
 

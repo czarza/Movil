@@ -3,8 +3,8 @@ package com.czarzap.cobromovil.beans;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-
-public class InComercios {
+@SuppressWarnings("serial")
+public class InComercios implements Serializable {
 	public ComerciosId id = new ComerciosId();
 	private Integer com_contribuyente;
 	private String  com_denominacion;
@@ -20,8 +20,8 @@ public class InComercios {
 	private String  com_telefono;
 	private String  com_email;
 	private String  com_domicilio_notificaciones;
-	private String    com_fecha_ingreso;
-	private String    com_fecha_baja;
+	private String  com_fecha_ingreso;
+	private String  com_fecha_baja;
 	private Integer com_ult_eje;
 	private String  com_horario;
 	private String  com_notas;
@@ -37,6 +37,8 @@ public class InComercios {
 	private String  com_niv;
 	private String  com_num_placa;
 	private String  com_num_tarj_circulacion;
+	private Boolean pagoHoy;
+	private String nombreRuta;
 
 	public InComercios() {
 		super();
@@ -118,6 +120,10 @@ public class InComercios {
 	public void setCom_num_placa(String com_num_placa) {this.com_num_placa = com_num_placa;}
 	public String getCom_num_tarj_circulacion() {return com_num_tarj_circulacion;}
 	public void setCom_num_tarj_circulacion(String com_num_tarj_circulacion) {this.com_num_tarj_circulacion = com_num_tarj_circulacion;}
+	public Boolean getPagoHoy() { return pagoHoy; }
+	public void setPagoHoy(Boolean pagoHoy) { this.pagoHoy = pagoHoy; }
+	public String getNombreRuta() {return nombreRuta;}
+	public void setNombreRuta(String nombreRuta) {this.nombreRuta = nombreRuta;}
 
 	@Override
 	public String toString() {
@@ -154,6 +160,8 @@ public class InComercios {
 				", com_niv='" + com_niv + '\'' +
 				", com_num_placa='" + com_num_placa + '\'' +
 				", com_num_tarj_circulacion='" + com_num_tarj_circulacion + '\'' +
+				", pagoHoy=" + pagoHoy +
+				", nombreRuta='" + nombreRuta + '\'' +
 				'}';
 	}
 }

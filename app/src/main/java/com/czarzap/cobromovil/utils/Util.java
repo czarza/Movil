@@ -98,7 +98,7 @@ public class Util {
 
     public void pago(InComercio_cobro_movil pagos, Context context, HsBluetoothPrintDriver hsBluetoothPrintDriver,
                      String nombreEmpresa, String domicilioEmpresa, String rfcEmpresa, String agente,
-                     String ruta, String quienOcupa, Integer contribuyente, Integer control, String propietario){
+                     String ruta, String quienOcupa, Integer contribuyente,String propietario){
         Bitmap bmp = null;
         ContextWrapper cw = new ContextWrapper(context);  // Obtener el Logo
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
@@ -107,7 +107,7 @@ public class Util {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.ALPHA_8;
         try { bmp = BitmapFactory.decodeStream(new FileInputStream(f), null, options);} catch (FileNotFoundException e) {e.printStackTrace();}
-        String qr = "qr=2&contribuyente=" + contribuyente + "&control=" + control + "&pago=" + pagos.getCac_numero_pago();
+        String qr = "qr=2&contribuyente=" + contribuyente + "&control=" + pagos.getCac_control() + "&pago=" + pagos.getCac_numero_pago();
 
         printImage(bmp,hsBluetoothPrintDriver);
         voidLine(hsBluetoothPrintDriver);
@@ -129,8 +129,7 @@ public class Util {
         printLine("Fecha: " + pagos.getFecha_pago(),hsBluetoothPrintDriver);
         printLine("Agente: " + agente,hsBluetoothPrintDriver);
         if (!pagos.getCac_notas().isEmpty()) printLine("Notas: " + pagos.getCac_notas(),hsBluetoothPrintDriver);
-//        printqr(qr,hsBluetoothPrintDriver);           Impresora Naranja
-
+        printqr(qr,hsBluetoothPrintDriver);
         lastLine(hsBluetoothPrintDriver);
     }
 

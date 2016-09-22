@@ -58,8 +58,6 @@ public class AdapterRutas extends RecyclerView.Adapter<AdapterRutas.MyViewHolder
 
             }
         });
-
-
     }
 
     @Override

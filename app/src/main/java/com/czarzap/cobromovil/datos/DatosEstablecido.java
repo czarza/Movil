@@ -40,7 +40,7 @@ public class DatosEstablecido  extends Activity {
     private EditText etQuien;
     private EditText etControl;
     private EditText etLicencia;
-    private CircularProgressButton bSiguiente,bEstado;
+    private CircularProgressButton bEstado;
     private Switch sStatus;
     private InComercios comercio;
     private Integer control;
@@ -111,7 +111,6 @@ public class DatosEstablecido  extends Activity {
         etControl = (EditText) findViewById(R.id.etControl);
         etLicencia = (EditText) findViewById(R.id.etLicencia);
         bEstado   = (CircularProgressButton) findViewById(R.id.bEstado);
-        bSiguiente = (CircularProgressButton) findViewById(R.id.bSiguiente);
         sStatus = (Switch) findViewById(R.id.sStatus);
         comercio = new InComercios();
         if (RTApplication.getConnState() == Contants.UNCONNECTED) {
@@ -173,7 +172,6 @@ public class DatosEstablecido  extends Activity {
         else sStatus.setChecked(false);
 
         linearLayout.setVisibility(View.VISIBLE);
-            bSiguiente.setVisibility(View.GONE);
             bEstado.setVisibility(View.VISIBLE);
             bEstado.setOnClickListener(new View.OnClickListener() {
                 @Override

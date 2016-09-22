@@ -7,6 +7,12 @@
     <color name="gray_bg_hover">#fde18c</color>
     <color name="basic_item_bg">@android:color/white</color>
 
+
+
+    <color name="red">#E53935</color>
+    <color name="black">#000000</color>
+    <color name="orange">#e65100</color>
+
     
     <color name="basic_text_color">@android:color/white</color>
     <color name="hint_text_color">#7f7f7f</color>
