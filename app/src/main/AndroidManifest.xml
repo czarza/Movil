@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.czarzap.cobromovil.rtprinter">
+    package="com.czarzap.cobromovil">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -31,19 +31,18 @@
         android:value="@integer/google_play_services_version" />
 
     <application
-        android:name="com.czarzap.cobromovil.main.RTApplication"
+        android:name=".main.RTApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_sifi"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <provider
-            android:name="com.czarzap.cobromovil.search.CustomSuggestionsProvider"
+            android:name=".search.CustomSuggestionsProvider"
             android:authorities="br.com.edsilfer.content_provider.CustomSuggestionsProvider" />
 
         <activity
-            android:name="com.czarzap.cobromovil.login.LoginActivity"
+            android:name=".login.LoginActivity"
             android:configChanges="orientation"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,36 +51,44 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.czarzap.cobromovil.main.HeatSensitiveActivity"
+            android:name=".main.HeatSensitiveActivity"
             android:configChanges="orientation"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
-        <activity android:name="com.czarzap.cobromovil.login.RegisterActivity" />
-        <activity android:name="com.czarzap.cobromovil.menu.MenuActivity" />
-        <activity android:name="com.czarzap.cobromovil.menu.LeerQrActivity" />
-        <activity android:name="com.czarzap.cobromovil.menu.ListaComercioActivity" />
-        <activity android:name="com.czarzap.cobromovil.menu.ListaRutasActivity" />
-        <activity android:name="com.czarzap.cobromovil.menu.TipoComercioActivity" />
-        <activity android:name="com.czarzap.cobromovil.datos.DatosAmbulante" />
-        <activity android:name="com.czarzap.cobromovil.datos.DatosSemiFijo" />
-        <activity android:name="com.czarzap.cobromovil.datos.DatosEstablecido" />
-        <activity android:name="com.czarzap.cobromovil.pagos.PagosAmbulante" />
-        <activity android:name="com.czarzap.cobromovil.pagos.PagosSemiFijo" />
+        <activity android:name=".login.RegisterActivity" />
         <activity
-            android:name="com.czarzap.cobromovil.search.BuscarContribuyente"
+            android:name=".menu.MenuActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".qr.LeerQrActivity" />
+        <activity android:name=".comercio.ListaComercioActivity" />
+        <activity android:name=".comercio.ListaRutasActivity" />
+        <activity android:name=".comercio.TipoComercioActivity" />
+        <activity android:name=".datos.DatosAmbulante" />
+        <activity android:name=".datos.DatosSemiFijo" />
+        <activity android:name=".datos.DatosEstablecido" />
+        <activity android:name=".pagos.PagosAmbulante" />
+        <activity android:name=".pagos.PagosSemiFijo" />
+        <activity
+            android:name=".search.BuscarContribuyente"
             android:label="Buscar Contribuyente">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-        <activity android:name="com.czarzap.cobromovil.datos.DatosMotos" />
-        <activity android:name="com.czarzap.cobromovil.menu.VerImagenActivity" />
-        <activity android:name="com.czarzap.cobromovil.login.ResetActivity" />
-        <activity android:name="com.czarzap.cobromovil.corte.CorteActivity" />
-        <activity android:name="com.czarzap.cobromovil.corte.ReporteActivity" />
-        <activity android:name="com.czarzap.cobromovil.pagos.VistaPagoSemiFijo" />
-        <activity android:name="com.czarzap.cobromovil.menu.IngresosActivity" />
-        <activity android:name="com.czarzap.cobromovil.menu.OfflineActivity" />
+        <activity android:name=".datos.DatosMotos" />
+        <activity android:name=".comercio.VerImagenActivity" />
+        <activity android:name=".login.ResetActivity" />
+        <activity android:name=".corte.CorteActivity" />
+        <activity android:name=".corte.ReporteActivity" />
+        <activity android:name=".pagos.VistaPagoSemiFijo" />
+        <activity android:name=".menu.IngresosActivity" />
+        <activity android:name=".offline.OfflineActivity" />
+        <activity android:name=".add.Agregar" />
+        <activity android:name=".add.AgregarContribuyente" />
+        <activity android:name=".add.AgregarComercio" />
+        <activity android:name=".comercio.PagosActivity" />
+        <activity android:name=".offline.TestActivity" />
+        <activity android:name=".menu.BaseActivity"></activity>
     </application>
 
 </manifest>

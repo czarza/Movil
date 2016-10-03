@@ -1,11 +1,9 @@
 package com.czarzap.cobromovil.corte;
 
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -13,7 +11,8 @@ import android.widget.TextView;
 import com.czarzap.cobromovil.DB.DatabaseManager;
 import com.czarzap.cobromovil.adapter.AdapterPagos;
 import com.czarzap.cobromovil.beans.InComercio_cobro_movil;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
+import com.czarzap.cobromovil.menu.BaseActivity;
 import com.czarzap.cobromovil.service.ReporteService;
 
 import java.math.BigDecimal;
@@ -25,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ReporteActivity extends AppCompatActivity {
+public class ReporteActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
     private TextView tvTotal;
@@ -40,7 +39,9 @@ public class ReporteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Corte");
         setContentView(R.layout.activity_reporte);
+
         onStartCount = 1;
         if (savedInstanceState == null)this.overridePendingTransition(R.anim.anim_slide_in_left,R.anim.anim_slide_out_left);
         else onStartCount = 2;
@@ -52,18 +53,8 @@ public class ReporteActivity extends AppCompatActivity {
         loadJSON(url);
     }
 
-    @Override
-    protected void onStart() {
-        // TODO Auto-generated method stub
-        super.onStart();
-        if (onStartCount > 1) {
-            this.overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right);
-        } else if (onStartCount == 1) {
-            onStartCount++;
-        }
 
-    }
+
     private void initViews(){
         recyclerView = (RecyclerView)findViewById(R.id.rvListPagos);
         progress=(ProgressBar)findViewById(R.id.progress_bar);

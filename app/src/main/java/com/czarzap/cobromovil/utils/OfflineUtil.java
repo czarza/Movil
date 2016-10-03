@@ -1,32 +1,112 @@
 package com.czarzap.cobromovil.utils;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
+import com.czarzap.cobromovil.beans.InComercio_cobro_movil;
 import com.czarzap.cobromovil.beans.InComercios;
+import com.czarzap.cobromovil.beans.InMetaCampos;
 import com.czarzap.cobromovil.beans.Rutas;
 import com.czarzap.cobromovil.search.Contribuyente;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Alfredo on 22/09/2016.
- */
 
 public class OfflineUtil {
     static final private String contribuyentesJSON = "Contribuyentes.txt";
     static final private String comerciosJSON = "Comercios.txt";
     static final private String rutasJSON = "Rutas.txt";
+    static final private String pagosJSON = "Pagos.txt";
 
+    public void pagosSave(List<InComercio_cobro_movil> comercios,Context context){
+        Gson gson = new Gson();
+        String s = gson.toJson(comercios);
+
+        FileOutputStream outputStream;
+
+        try {
+            outputStream = context.openFileOutput(pagosJSON, Context.MODE_PRIVATE);
+            outputStream.write(s.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Boolean PagosDelete(Context context) throws FileNotFoundException {
+        File file = context.getFileStreamPath(pagosJSON);
+        if(file.delete()) {
+            return false;
+        }
+        return true;
+    }
+    public Boolean ContribuyentesDelete(Context context) throws FileNotFoundException {
+        File file = context.getFileStreamPath(contribuyentesJSON);
+        if(file.delete()) {
+            return false;
+        }
+        return true;
+    }
+    public Boolean ComerciosDelete(Context context) throws FileNotFoundException {
+        File file = context.getFileStreamPath(comerciosJSON);
+        if(file.delete()) {
+            return false;
+        }
+        return true;
+    }
+    public Boolean RutasDelete(Context context) throws FileNotFoundException {
+        File file = context.getFileStreamPath(rutasJSON);
+        if(file.delete()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("google.com"); //You can replace it with your name
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+    public List<InComercio_cobro_movil> pagosData(Context context) throws IOException {
+
+        FileInputStream fis = context.openFileInput(pagosJSON);
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader bufferedReader = new BufferedReader(isr);
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            sb.append(line);
+        }
+
+        String json = sb.toString();
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<InComercio_cobro_movil>>(){}.getType();
+        List<InComercio_cobro_movil> pago = gson.fromJson(json, listType);
+        for(InComercio_cobro_movil c: pago){
+            Log.d("Comercios",c.getCac_numero_pago().toString());
+        }
+        return pago;
+    }
 
     public void initDownloadComercios(List<InComercios> comercios,Context context){
         Gson gson = new Gson();
@@ -58,7 +138,7 @@ public class OfflineUtil {
         }
     }
 
-    public void initDownloadRutas(List<Rutas> rutas, Context context){
+    public void initDownloadRutas(List<InMetaCampos> rutas, Context context){
         Gson gson = new Gson();
         String s = gson.toJson(rutas);
 
@@ -117,9 +197,42 @@ public class OfflineUtil {
     }
 
 
-    public List<Rutas> rutasData(Context context) throws IOException {
+    public boolean fileExistsRuta(Context context) {
+        File file = context.getFileStreamPath(rutasJSON);
+        if(file == null || !file.exists()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean fileExistsComercio(Context context) {
+        File file = context.getFileStreamPath(comerciosJSON);
+        if(file == null || !file.exists()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean fileExistsContribuyente(Context context) {
+        File file = context.getFileStreamPath(contribuyentesJSON);
+        if(file == null || !file.exists()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean fileExistPagos(Context context) {
+        File file = context.getFileStreamPath(pagosJSON);
+        if(file == null || !file.exists()) {
+            return false;
+        }
+        return true;
+    }
+
+    public List<InMetaCampos> rutasData(Context context) throws IOException {
 
         FileInputStream fis = context.openFileInput(rutasJSON);
+
         InputStreamReader isr = new InputStreamReader(fis);
         BufferedReader bufferedReader = new BufferedReader(isr);
         StringBuilder sb = new StringBuilder();
@@ -130,12 +243,49 @@ public class OfflineUtil {
 
         String json = sb.toString();
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<Rutas>>(){}.getType();
-        List<Rutas> rutas = gson.fromJson(json, listType);
-        for(Rutas r: rutas){
-            Log.d("Rutas",r.getNombre());
+        Type listType = new TypeToken<ArrayList<InMetaCampos>>(){}.getType();
+        List<InMetaCampos> rutas = gson.fromJson(json, listType);
+        for(InMetaCampos r: rutas){
+            Log.d("Rutas",r.getMc_nombre());
         }
         return rutas;
     }
 
+    public InComercios getComercioOffline(Context context,Integer control,String tipo) {
+        List<InComercios> comercios = new ArrayList<>();
+        try {
+            comercios = this.comerciosData(context);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (InComercios c : comercios) {
+            Integer tempControl = c.getCom_control();
+            String tempTipo = c.getCom_tipo();
+            if (control.equals(tempControl) && tipo.equals(tempTipo)) {
+                return c;
+            }
+
+        }
+        return null;
+    }
+
+
+    public List<InComercios> getComercioxContribuyenteOffline(Context context,Integer id) {
+        List<InComercios> comercios = new ArrayList<>();
+        List<InComercios> list = new ArrayList<>();
+        try {
+            comercios = this.comerciosData(context);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (InComercios c : comercios) {
+            Integer contribuyente = c.getCom_contribuyente();
+            if (id.equals(contribuyente)) {
+                list.add(c);
+                Log.d("Offline Comercio", c.toString());
+            }
+
+        }
+        return list;
+    }
 }

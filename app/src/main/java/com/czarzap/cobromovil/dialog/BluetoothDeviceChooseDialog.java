@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.adapter.BluetoothDeviceAdapter;
 import com.czarzap.cobromovil.utils.LogUtils;
 

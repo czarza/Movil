@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#FAFAFA</color>
+    <color name="rippleEffectMaskColor">#FAFAFA</color>
+    <color name="rippleEffectWaveColor">#bbbbbb</color>
+    <color name="textHintColor">#FAFAFA</color>
+    <color name="textPrimaryColor">#828282</color>
+    <color name="transparency_color">#ccffffff</color>
+    <dimen name="bar_height">56dp</dimen>
+    <dimen name="result_item_header_text_size">16dp</dimen>
+    <dimen name="result_item_height">70dp</dimen>
+    <dimen name="result_item_subheader_text_size">14dp</dimen>
+    <dimen name="search_text_size">16dp</dimen>
+    <string name="app_name">CustomSearchable</string>
+    <style name="Theme.AppCompat.Translucent" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:textColorPrimary">@color/textPrimaryColor</item>
+    </style>
+</resources>

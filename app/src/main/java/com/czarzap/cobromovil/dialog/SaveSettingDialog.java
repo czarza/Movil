@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.interfaces.CustomDialogInterface;
 
 /**

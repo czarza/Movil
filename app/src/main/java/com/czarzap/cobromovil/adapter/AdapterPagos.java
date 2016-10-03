@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.czarzap.cobromovil.beans.InComercio_cobro_movil;
 import com.czarzap.cobromovil.datos.DatosSemiFijo;
 import com.czarzap.cobromovil.pagos.VistaPagoSemiFijo;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 
 import java.io.Serializable;
 import java.util.List;

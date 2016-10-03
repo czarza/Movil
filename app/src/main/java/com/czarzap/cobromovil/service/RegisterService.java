@@ -31,4 +31,9 @@ public interface RegisterService {
     Call<String> setPass(@Field("empresa") Integer empresa,
                          @Field("numero") Integer numero,
                          @Field("pass") String pass);
+
+    @FormUrlEncoded
+    @POST("api/getFolio.htm")
+    Call<Integer> getFolio(@Field("empresa") Integer empresa,
+                         @Field("numero") Integer numero);
 }

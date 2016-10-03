@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.czarzap.cobromovil.DB.DatabaseManager;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.service.LoginService;
 import com.czarzap.cobromovil.service.RegisterService;
 import com.dd.CircularProgressButton;

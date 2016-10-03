@@ -14,10 +14,9 @@ import android.widget.TextView;
 
 
 import com.czarzap.cobromovil.beans.InMetaCampos;
-import com.czarzap.cobromovil.menu.ListaComercioActivity;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.comercio.ListaComercioActivity;
+import com.czarzap.cobromovil.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

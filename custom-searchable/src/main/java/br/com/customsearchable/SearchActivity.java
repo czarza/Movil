@@ -42,7 +42,7 @@ import br.com.customsearchable.util.RecyclerViewOnItemClickListener;
  * initialize the main UI components - such as the app bar and result list (RecyclerView). It should
  * be called through an intent and it's responses are also sent as intents
  */
-public class SearchActivity extends AppCompatActivity {
+public class  SearchActivity extends AppCompatActivity {
     // CONSTANTS
     public static final int VOICE_RECOGNITION_CODE = 1;
 

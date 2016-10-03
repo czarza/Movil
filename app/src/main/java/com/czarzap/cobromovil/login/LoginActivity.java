@@ -1,14 +1,11 @@
 package com.czarzap.cobromovil.login;
 import android.app.Activity;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,18 +15,10 @@ import com.dd.CircularProgressButton;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.czarzap.cobromovil.DB.DatabaseManager;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.beans.InAgentesMoviles;
 import com.czarzap.cobromovil.menu.MenuActivity;
 import com.czarzap.cobromovil.service.LoginService;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,21 +26,29 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends Activity {
-    private Bitmap bmp;
+
     private DatabaseManager manager;
     private TextView registerLink;
     private CircularProgressButton bLogin;
     private EditText etPassword;
     private LoginService service;
-    private Integer count;
+    private Integer count,numeroAgente;
     private String pass,status;
     private InAgentesMoviles agente;
+    private CheckBox check;
     int onStartCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        manager = new DatabaseManager(this);            // Crear base de datos si no existe
+        if(manager.getLogin()!= null){
+            if(manager.getLogin().equals("true")){
+                Intent registerIntent = new Intent(LoginActivity.this, MenuActivity.class);
+                LoginActivity.this.startActivity(registerIntent);
+            }
+        }
         onStartCount = 1;
         if (savedInstanceState == null) // 1st time
         {
@@ -61,7 +58,7 @@ public class LoginActivity extends Activity {
         {
             onStartCount = 2;
         }
-        manager = new DatabaseManager(this);            // Crear base de datos si no existe
+
         String url = manager.getWebService(1); // obtener el webService de login
         if(url!=null){
             Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
@@ -73,6 +70,17 @@ public class LoginActivity extends Activity {
        initValues();
 
     }
+
+
+    private void setcheck(){
+        if(check.isChecked()){
+            manager.login();
+        }
+        else{
+            manager.logout();
+        }
+    }
+
 
     @Override
     protected void onStart() {
@@ -113,13 +121,20 @@ public class LoginActivity extends Activity {
         etPassword = (EditText) findViewById(R.id.etPassword);
         bLogin = (CircularProgressButton) findViewById(R.id.bLogin);
         registerLink = (TextView) findViewById(R.id.tvRegister);
-
+        check = (CheckBox) findViewById(R.id.checkBoxLogin);
+        check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setcheck();
+            }
+        });
         existeRegistro();
     }
 
     private void existeRegistro(){
         count = manager.existeAgente();
-        if (count == 0) registerLink.setVisibility(TextView.VISIBLE);      // Si no se ha registrado, pone visible el link de registro
+        if (count == 0){ registerLink.setVisibility(TextView.VISIBLE);      // Si no se ha registrado, pone visible el link de registro
+                         check.setEnabled(false);     }
         registerLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,16 +177,17 @@ public class LoginActivity extends Activity {
         }
         else {
             Integer empresa = manager.getEmpresa();
-            Integer numeroAgente = manager.getAgente();
+            numeroAgente = manager.getAgente();
             if (empresa == null) empresa = getIntent().getExtras().getInt("empresa");
             if (numeroAgente == null) numeroAgente = getIntent().getExtras().getInt("numero");
-            Call<InAgentesMoviles> call = service.getAgente(empresa, numeroAgente, pass);
+            Integer pago = manager.getFolio();
+            Call<InAgentesMoviles> call = service.getAgente(empresa, numeroAgente, pass,pago);
             call.enqueue(new Callback<InAgentesMoviles>() {
                 @Override
                 public void onResponse(Call<InAgentesMoviles> call, Response<InAgentesMoviles> response) {
                     agente = response.body();
                     status = agente.getAm_status();
-                    getLogo();
+                    manager.updateAgente(status,numeroAgente);
                     Handler handler;
                     if(status == null){
                         bLogin.setProgress(-1);
@@ -226,41 +242,27 @@ public class LoginActivity extends Activity {
 
                 @Override
                 public void onFailure(Call<InAgentesMoviles> call, Throwable t) {
-                    Log.d("Error",t.getMessage());
-                    Toast.makeText(getApplicationContext(), "Error conectandose al Sistema", Toast.LENGTH_LONG).show();
-                    bLogin.setProgress(0);
+                    String status = manager.getStatus();
+                    String pass = manager.get();
+                    if(status != null) {
+                        if (status.equals("A") && pass.equals(etPassword.getText().toString())) {
+                            Handler handler;
+                            bLogin.setProgress(100);
+                            handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    Intent menuIntent = new Intent(LoginActivity.this, MenuActivity.class);
+                                    LoginActivity.this.startActivity(menuIntent);
+                                    bLogin.setProgress(0);
+                                }
+                            }, 800);
+                        }
+                    }
                 }
             });
         }
 
     }
-
-
-
-    private void getLogo(){
-        Call<ResponseBody> call = service.getLogo(agente.getAm_empresa());
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.ALPHA_8;
-                bmp = BitmapFactory.decodeStream(response.body().byteStream(), null, options);
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                bmp.compress(Bitmap.CompressFormat.PNG, 100, bytes);
-                try {
-                    saveToInternalStorage(bmp);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {}
-        });
-    }
-
-
-
 
     public Boolean required(EditText editText) {
         String str = editText.getText().toString();
@@ -271,21 +273,5 @@ public class LoginActivity extends Activity {
         return true;
     }
 
-    private void saveToInternalStorage(Bitmap bitmapImage) throws IOException {
-        ContextWrapper cw = new ContextWrapper(getApplicationContext());
-        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-        File mypath=new File(directory,"logo.png");
 
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(mypath);
-            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (fos != null) {
-                fos.close();
-            }
-        }
-    }
 }

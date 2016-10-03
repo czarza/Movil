@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 
 import java.util.List;
 

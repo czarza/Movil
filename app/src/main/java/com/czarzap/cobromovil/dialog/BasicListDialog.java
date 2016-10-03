@@ -13,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.adapter.BasicDialogAdapter;
 
 import java.util.List;

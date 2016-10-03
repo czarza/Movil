@@ -16,12 +16,11 @@ public interface LoginService {
     @POST("api/login.htm")
     Call<InAgentesMoviles> getAgente(@Field("empresa") Integer empresa,
                                      @Field("numero") Integer numero,
-                                     @Field("pass") String password);
+                                     @Field("pass") String password,
+                                     @Field("pago") Integer pago);
 
 
-    @FormUrlEncoded
-    @POST("api/getLogo.htm")
-    Call<ResponseBody> getLogo(@Field("empresa") Integer empresa);
+
 
 
 

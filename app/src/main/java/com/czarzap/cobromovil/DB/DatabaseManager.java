@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.czarzap.cobromovil.beans.InAgentesMoviles;
 import com.czarzap.cobromovil.beans.InEmpresas;
@@ -47,6 +48,8 @@ public class DatabaseManager {
     public static final String INAGENTESMOVILES_COLUMN_HORARIO_INI = "am_horario_ini_militar";
     public static final String INAGENTESMOVILES_COLUMN_HORARIO_FIN = "am_horario_fin_militar";
     public static final String INAGENTESMOVILES_COLUMN_OBSERVACIONES = "am_observaciones";
+    public static final String INAGENTESMOVILES_COLUMN_NUM_COBRO = "am_num_cobro";
+    public static final String INAGENTESMOVILES_COLUMN_REMEMBER = "am_remember";
 
     public static final String CREATE_TABLE_INAGENTESMOVILES = "CREATE TABLE inAgentesMoviles" +            // SENTENCIA PARA CREAR LA TABLA
                                                                 "(" +
@@ -65,7 +68,9 @@ public class DatabaseManager {
                                                                 " am_baja_usr          VARCHAR2(18) NULL ," +
                                                                 " am_horario_ini_militar VARCHAR2(10) NULL ," +
                                                                 " am_horario_fin_militar VARCHAR2(10) NULL ," +
-                                                                " am_observaciones     VARCHAR2(500) NULL " +
+                                                                " am_observaciones     VARCHAR2(500) NULL, " +
+                                                                " am_num_cobro            NUMBER(12) NULL, " +
+                                                                " am_remember            NUMBER(12) NULL " +
                                                                 ");" +
 
                                                                 "CREATE UNIQUE INDEX XPKinAgentesMoviles ON inAgentesMoviles" +
@@ -137,6 +142,7 @@ public class DatabaseManager {
         contentValues.put(INAGENTESMOVILES_COLUMN_PASS,agenteMovil.getAm_password());
         contentValues.put(INAGENTESMOVILES_COLUMN_NOMBRE,agenteMovil.getAm_nombre());
         contentValues.put(INAGENTESMOVILES_COLUMN_STATUS,agenteMovil.getAm_status());
+        contentValues.put(INAGENTESMOVILES_COLUMN_NUM_COBRO,agenteMovil.getAm_num_cobro());
 
         return contentValues;
     }
@@ -210,6 +216,52 @@ public class DatabaseManager {
         return count;
     }
 
+    public void updateAgente(String status, Integer numero){
+        String sql = "UPDATE " + TABLE_NAME_INAGENTESMOVILES
+                   + " SET " + INAGENTESMOVILES_COLUMN_STATUS +" = '" +status +"'"
+                   + " WHERE " + INAGENTESMOVILES_COLUMN_NUMERO + " = " + numero;
+        db.execSQL(sql);
+    }
+
+    public String getStatus(){                          // existe agente
+        String sql = "SELECT "+INAGENTESMOVILES_COLUMN_STATUS +" FROM " + TABLE_NAME_INAGENTESMOVILES;
+        Cursor c = db.rawQuery(sql,null);
+        String count = null;
+        if( c != null && c.moveToFirst() ) {
+            count = c.getString(0);
+            c.close();
+        }
+        return count;
+    }
+
+    public Integer getNextFolio(Integer numero) {                          // existe agente
+        String sql = "SELECT " + INAGENTESMOVILES_COLUMN_NUM_COBRO + " FROM " + TABLE_NAME_INAGENTESMOVILES;
+        Cursor c = db.rawQuery(sql, null);
+        Integer count = null;
+        if (c != null && c.moveToFirst()) {
+            count = c.getInt(0);
+            c.close();
+        }
+        ++count;
+        String update = "UPDATE " + TABLE_NAME_INAGENTESMOVILES +
+                " SET " + INAGENTESMOVILES_COLUMN_NUM_COBRO + "=" + count +
+                " WHERE " + INAGENTESMOVILES_COLUMN_NUMERO + "=" + numero;
+        db.execSQL(update);
+
+        return count;
+    }
+
+    public Integer getFolio() {                          // existe agente
+        String sql = "SELECT " + INAGENTESMOVILES_COLUMN_NUM_COBRO + " FROM " + TABLE_NAME_INAGENTESMOVILES;
+        Cursor c = db.rawQuery(sql, null);
+        Integer count = null;
+        if (c != null && c.moveToFirst()) {
+            count = c.getInt(0);
+            c.close();
+        }
+        return count;
+    }
+
     public String get(){                          // existe agente
         String sql = "SELECT "+INAGENTESMOVILES_COLUMN_PASS +" FROM " + TABLE_NAME_INAGENTESMOVILES;
         Cursor c = db.rawQuery(sql,null);
@@ -269,10 +321,38 @@ public class DatabaseManager {
 
     public void setPassword(String password,Integer numero) {
         String sql = "UPDATE " + TABLE_NAME_INAGENTESMOVILES +
-        "SET " + INAGENTESMOVILES_COLUMN_PASS + "=" + password+
-        "WHERE " + INAGENTESMOVILES_COLUMN_NUMERO +"="+ numero;
+        " SET " + INAGENTESMOVILES_COLUMN_PASS + "=" + password+
+        " WHERE " + INAGENTESMOVILES_COLUMN_NUMERO +"="+ numero;
         db.execSQL(sql);
     }
 
+    public void login() {
+        String sql = "UPDATE " + TABLE_NAME_INAGENTESMOVILES +
+                " SET " + INAGENTESMOVILES_COLUMN_REMEMBER + "=" +"'true'" ;
+        db.execSQL(sql);
+    }
+
+    public void logout() {
+        String sql = "UPDATE " + TABLE_NAME_INAGENTESMOVILES +
+                " SET " + INAGENTESMOVILES_COLUMN_REMEMBER + "="  +"'false'" ;
+        db.execSQL(sql);
+    }
+
+    public void setLogin(Integer num_cobro) {
+        String sql = "UPDATE " + TABLE_NAME_INAGENTESMOVILES +
+                " SET " + INAGENTESMOVILES_COLUMN_NUM_COBRO + "="  + num_cobro ;
+        db.execSQL(sql);
+    }
+
+    public String getLogin(){
+        String sql = "SELECT "+INAGENTESMOVILES_COLUMN_REMEMBER +" FROM " + TABLE_NAME_INAGENTESMOVILES ;
+        Cursor c = db.rawQuery(sql,null);
+        String count = null;
+        if( c != null && c.moveToFirst() ) {
+            count = c.getString(0);
+            c.close();
+        }
+        return count;
+    }
 
 }

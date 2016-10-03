@@ -17,7 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.czarzap.cobromovil.receiver.UsbDeviceReceiver;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.dialog.BluetoothDeviceChooseDialog;
 import com.czarzap.cobromovil.dialog.UsbDeviceChooseDialog;
 import com.czarzap.cobromovil.menu.MenuActivity;

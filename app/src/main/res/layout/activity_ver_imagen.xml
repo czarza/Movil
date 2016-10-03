@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/fondo"
-    tools:context="com.czarzap.cobromovil.menu.VerImagenActivity">
+    tools:context="com.czarzap.cobromovil.comercio.VerImagenActivity">
 
     <ImageView
         android:layout_width="wrap_content"

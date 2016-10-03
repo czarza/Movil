@@ -1,11 +1,9 @@
 package com.czarzap.cobromovil.datos;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -13,28 +11,18 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.czarzap.cobromovil.DB.DatabaseManager;
-import com.czarzap.cobromovil.main.RTApplication;
+import com.czarzap.cobromovil.menu.BaseActivity;
 import com.czarzap.cobromovil.menu.MenuActivity;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.beans.InComercios;
 import com.czarzap.cobromovil.pagos.PagosAmbulante;
-import com.czarzap.cobromovil.service.DatosComercioService;
-import com.czarzap.cobromovil.utils.ToastUtil;
+import com.czarzap.cobromovil.utils.OfflineUtil;
 import com.dd.CircularProgressButton;
 
-import java.math.BigDecimal;
-
-import driver.Contants;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class DatosAmbulante extends Activity {
+public class DatosAmbulante extends BaseActivity {
 
-    private DatosComercioService service;
     private EditText etPropietario;
     private EditText etDomicilio;
     private EditText etColonia;
@@ -45,10 +33,8 @@ public class DatosAmbulante extends Activity {
     private Switch sStatus;
     private InComercios comercio;
     private Integer control,empresa;
-    private BigDecimal tarifa;
     private String tipo;
     private LinearLayout linearLayout;
-    private Bundle args;
     private AlertDialog.Builder builder;
     int onStartCount = 0;
 
@@ -57,6 +43,7 @@ public class DatosAmbulante extends Activity {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_datos_ambulante);
         linearLayout = (LinearLayout) findViewById(R.id.LinearAmbulante) ;
+
         onStartCount = 1;
         if (savedInstanceState == null) // 1st time
         {
@@ -69,23 +56,8 @@ public class DatosAmbulante extends Activity {
         initViews();
     }
 
-    @Override
-    protected void onStart() {
-        // TODO Auto-generated method stub
-        super.onStart();
-        if (onStartCount > 1) {
-            this.overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right);
-        } else if (onStartCount == 1) {
-            onStartCount++;
-        }
-
-    }
-
     private void initViews(){
-        control =Integer.valueOf( getIntent().getExtras().getString("control"));                 // Leer los datos pasados por el QR
-        tipo = getIntent().getExtras().getString("tipo");
-        empresa = Integer.valueOf(getIntent().getExtras().getString("empresa"));
+
         builder = new AlertDialog.Builder(this);
         DatabaseManager manager = new DatabaseManager(this);
         etPropietario = (EditText) findViewById(R.id.aPropietario);  // Parse xml items to Class
@@ -97,57 +69,35 @@ public class DatosAmbulante extends Activity {
         bSiguiente   = (CircularProgressButton) findViewById(R.id.aSiguiente);
         sStatus = (Switch) findViewById(R.id.aStatus);
         comercio = new InComercios();
-        if (RTApplication.getConnState() == Contants.UNCONNECTED) {
-            ToastUtil.show(getApplicationContext(), "Impresora Desconectada");
-            bSiguiente.setEnabled(false);
+        comercio = (InComercios) getIntent().getExtras().get("comercio");
+        if(comercio == null){
+            control =Integer.valueOf( getIntent().getExtras().getString("control"));                 // Leer los datos pasados por el QR
+            tipo = getIntent().getExtras().getString("tipo");
+            empresa = Integer.valueOf(getIntent().getExtras().getString("empresa"));
+
+            OfflineUtil util = new OfflineUtil();
+            if(util.fileExistsComercio(getApplicationContext())){
+                comercio = util.getComercioOffline(getApplicationContext(),control,tipo);
+                if(comercio == null) loadActivity();
+                else initComercio();
+            }
+
         }
-        String url = manager.getWebService(1);                              // obtener el webService de Comercio
-        Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
-                .baseUrl(url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        service = retrofit.create(DatosComercioService.class);  // El servicio del Datos Comercio
-
-        loadActivity();
+        else{
+            initComercio();
+        }
     }
     private void loadActivity(){
-        Log.d("EMPRESA",empresa.toString());
-        Log.d("control",control.toString());
-        Log.d("tipo",tipo);
-        Call<InComercios> call = service.getComercio(empresa,control,tipo);
-        call.enqueue(new Callback<InComercios>() {
-            @Override
-            public void onResponse(Call<InComercios> call, Response<InComercios> response) {
-                comercio = response.body();  // Obtener Clase
-                Log.d("Comercio",comercio.toString());
-                if(comercio.getCom_contribuyente() != null){
-                    initComercio();
-
-                }
-                else{
-                    builder.setIcon(android.R.drawable.ic_dialog_alert);
-                    builder.setMessage("No existe el Comercio Ambulante").setTitle("ERROR").setCancelable(false).setPositiveButton("Aceptar", new DialogInterface.OnClickListener()
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setMessage("No existe el Comercio Ambulante").setTitle("ERROR").setCancelable(false).setPositiveButton("Aceptar", new DialogInterface.OnClickListener()
                     {
                         public void onClick(DialogInterface dialog, int which) {
                             Intent comercioIntent = new Intent(DatosAmbulante.this, MenuActivity.class);
-                            DatosAmbulante.this.startActivity(comercioIntent);
-                        }
+                            DatosAmbulante.this.startActivity(comercioIntent);}
                     });
 
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<InComercios> call, Throwable t) {
-                Log.d("Error",t.getMessage());
-                Toast.makeText(getApplicationContext(), "Error Comercio, revise su conexion a Internet", Toast.LENGTH_LONG).show();
-            }
-        });
-
-
+        AlertDialog alert = builder.create();
+        alert.show();
 
     }
 
@@ -162,7 +112,6 @@ public class DatosAmbulante extends Activity {
         else sStatus.setChecked(false);
 
         linearLayout.setVisibility(View.VISIBLE);
-        getTarifa();
         bSiguiente.setVisibility(View.VISIBLE);
         bSiguiente.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -182,56 +131,11 @@ public class DatosAmbulante extends Activity {
 
 
     private void sendDatatoCobro(){
-        comercio.setCom_nombre_propietario(etPropietario.getText().toString());
-        comercio.setCom_domicilio_notificaciones(etDomicilio.getText().toString());
-        comercio.setCom_colonia(etColonia.getText().toString());
-        comercio.setCom_ocupante(etQuien.getText().toString());
-        comercio.setCom_status("A");
-
-        Call<InComercios> call = service.setComercio(comercio);
-        call.enqueue(new Callback<InComercios>() {
-            @Override
-            public void onResponse(Call<InComercios> call, Response<InComercios> response) {
-                InComercios fijo = response.body ();
-                args = new Bundle();
-                args.putInt("empresa",fijo.getCom_empresa());
-                args.putInt("control",fijo.getCom_control());
-                args.putInt("contribuyente",fijo.getCom_contribuyente());
-                args.putString("tipo",fijo.getCom_tipo());
-                args.putString ( "propietario",fijo.getCom_nombre_propietario ());
-                args.putString("domicilio", fijo.getCom_domicilio_notificaciones () +" "+ fijo.getCom_colonia ());
-                args.putString ( "quien", fijo.getCom_ocupante ());
-                if(tarifa != null) args.putDouble( "tarifa", tarifa.doubleValue());
                 Intent comercioIntent = new Intent(DatosAmbulante.this, PagosAmbulante.class);
-                comercioIntent.putExtras(args);
+                comercioIntent.putExtra("comercio",comercio);
                 DatosAmbulante.this.startActivity(comercioIntent);
-            }
-
-            @Override
-            public void onFailure(Call<InComercios> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error, revise su conexion a Internet", Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-
     }
 
-    private void getTarifa(){
-        Call<BigDecimal> call_ = service.getTarifa(empresa,tipo,comercio.getCom_local());
-        call_.enqueue(new Callback<BigDecimal>() {
-            @Override
-            public void onResponse(Call<BigDecimal> call, Response<BigDecimal> response) {
-                tarifa = response.body();
-
-            }
-
-            @Override
-            public void onFailure(Call<BigDecimal> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error Tarifa, revise su conexion a Internet", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 
     public Boolean required(EditText editText){
         String  str = editText.getText().toString();

@@ -3,13 +3,14 @@ package com.czarzap.cobromovil.login;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dd.CircularProgressButton;
 import com.czarzap.cobromovil.DB.DatabaseManager;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.beans.InAgentesMoviles;
 import com.czarzap.cobromovil.beans.InEmpresas;
 import com.czarzap.cobromovil.beans.InWebServices;
@@ -69,10 +70,9 @@ public class RegisterActivity extends Activity {
 
     private void initViews(){
 
-
         Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
 //                .baseUrl("https://www.sifi.com.mx:8443/SifiReceptoria/")
-                .baseUrl("http://192.168.0.13:8081/SifiReceptoria/")
+                .baseUrl("http://192.168.0.100:8081/SifiReceptoria/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -90,22 +90,54 @@ public class RegisterActivity extends Activity {
     }
 
     private void loadActivity(){
-
+        bRegister.setIndeterminateProgressMode(true);
         bRegister.setOnClickListener( new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {                                    // Accion Click Registrar
-                bRegister.setProgress(50);
-                inAgentesMoviles = new InAgentesMoviles();
-                inAgentesMoviles.setAm_numero(Integer.valueOf(etNumberAgent.getText().toString()));
-                inAgentesMoviles.setAm_nombre(etNameAgent.getText().toString());
-                inAgentesMoviles.setAm_cel(etCellPhone.getText().toString());
-                inAgentesMoviles.setAm_password(etPassword.getText().toString());
-                ObtenerWebService();
+            public void onClick(View v) {
+            bRegister.setProgress(50);
+                Handler handler;
+                handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        inAgentesMoviles = new InAgentesMoviles();
+                        inAgentesMoviles.setAm_numero(Integer.valueOf(etNumberAgent.getText().toString()));
+                        inAgentesMoviles.setAm_nombre(etNameAgent.getText().toString());
+                        inAgentesMoviles.setAm_cel(etCellPhone.getText().toString());
+                        inAgentesMoviles.setAm_password(etPassword.getText().toString());
+                        ObtenerWebService();
+                    }
+                }, 800);
+
             }
         });
 
     }
+
+    private void getFolio(){
+        Call<Integer> call = service.getFolio(empresa,inAgentesMoviles.getAm_numero());
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if(response.body()!= null) manager.setLogin(response.body());
+                else manager.setLogin(0);
+                Bundle args = new Bundle();
+                args.putInt("empresa",empresa);
+                args.putInt("numero",inAgentesMoviles.getAm_numero());
+                Intent registerIntent = new Intent(RegisterActivity.this,LoginActivity.class);
+                registerIntent.putExtras(args);
+                RegisterActivity.this.startActivity(registerIntent);
+                bRegister.setProgress(0);
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Error revise su conexion a Internet", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
 
     private void ObtenerEmpresa(){
         String rfc = etRFC.getText().toString();
@@ -120,13 +152,7 @@ public class RegisterActivity extends Activity {
                         inAgentesMoviles.setAm_empresa(empresa);
                         manager.insertarAgenteMovil(inAgentesMoviles);
                         manager.insertarEmpresa(empresas);
-                        Bundle args = new Bundle();
-                        args.putInt("empresa",empresa);
-                        args.putInt("numero",inAgentesMoviles.getAm_numero());
-                        Intent registerIntent = new Intent(RegisterActivity.this,LoginActivity.class);
-                        registerIntent.putExtras(args);
-                        RegisterActivity.this.startActivity(registerIntent);
-                        bRegister.setProgress(0);
+                        getFolio();
                     }
                     else{
                         bRegister.setProgress(-1);
@@ -163,10 +189,6 @@ public class RegisterActivity extends Activity {
             @Override
             public void onResponse(Call<List<InWebServices>> call, Response<List<InWebServices>> response) {   // En caso de que fue exitoso
                 List<InWebServices> webServices = response.body();   // Obtener la respuesta y castearlo a una Clase
-
-
-
-
                  for(InWebServices webService: webServices){
                     empresa = webService.getWs_empresa();
                     manager.insertarWebService(webService);                      // Insertar la lista de  WebServices en la base de datos
@@ -174,7 +196,7 @@ public class RegisterActivity extends Activity {
                 ObtenerEmpresa();
             }
 
-            @Override
+            @Override 
             public void onFailure(Call<List<InWebServices>> call, Throwable t) {              // En caso de haber un error
                 bRegister.setProgress(-1);
                 Toast.makeText(getApplicationContext(), "Error, revise su conexion a Internet", Toast.LENGTH_LONG).show();

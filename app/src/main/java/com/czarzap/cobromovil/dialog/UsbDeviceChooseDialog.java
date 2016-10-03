@@ -18,7 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.czarzap.cobromovil.receiver.UsbDeviceReceiver;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.adapter.UsbDeviceAdapter;
 import com.czarzap.cobromovil.utils.LogUtils;
 

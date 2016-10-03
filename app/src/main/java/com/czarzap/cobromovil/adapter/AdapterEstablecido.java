@@ -16,9 +16,11 @@ import com.czarzap.cobromovil.datos.DatosAmbulante;
 import com.czarzap.cobromovil.datos.DatosEstablecido;
 import com.czarzap.cobromovil.datos.DatosMotos;
 import com.czarzap.cobromovil.datos.DatosSemiFijo;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class AdapterEstablecido extends RecyclerView.Adapter<AdapterEstablecido.MyViewHolder> {
@@ -42,8 +44,10 @@ public class AdapterEstablecido extends RecyclerView.Adapter<AdapterEstablecido.
         final InComercios current = information.get(position);
         nombreRuta = current.getNombreRuta();
 
-        if(current.getPagoHoy()!= null) {
-            if (current.getPagoHoy().equals(true)) holder.ok.setVisibility(View.VISIBLE);
+        if(current.getUltFechaPago()!= null) {
+            Date dNow = new Date();
+            SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy");
+            if (current.getUltFechaPago().equals(ft.format(dNow))) holder.ok.setVisibility(View.VISIBLE);
         }
 
         String giro = current.getGiros();
@@ -58,38 +62,31 @@ public class AdapterEstablecido extends RecyclerView.Adapter<AdapterEstablecido.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                args = new Bundle();
-                args.putString("empresa",current.getCom_empresa().toString());
-                args.putString("control",current.getCom_control().toString());
-                args.putString("tipo",current.getCom_tipo());
-                args.putString("contribuyente",current.getCom_contribuyente().toString());
-                args.putString("ruta",current.getCom_ruta());
-                swicth(current.getCom_tipo(),view);
+                swicth(current,view);
 
             }
 
-            private void swicth(String tipo, View view) {
+            private void swicth(InComercios comercio, View view) {
                 Intent intent;
-                switch (tipo){
+                switch (comercio.getCom_tipo()){
                     case "S":
                         intent = new Intent(view.getContext (), DatosSemiFijo.class);
-                        intent.putExtras (args);
+                        intent.putExtra("comercio",comercio);
                         view.getContext().startActivity(intent);
                         break;
                     case "F":
                         intent = new Intent(view.getContext (), DatosEstablecido.class);
-                        intent.putExtras (args);
+                        intent.putExtra("comercio",comercio);
                         view.getContext().startActivity(intent);
                         break;
                     case "A":
                         intent = new Intent(view.getContext(), DatosAmbulante.class);
-                        intent.putExtras (args);
+                        intent.putExtra("comercio",comercio);
                         view.getContext().startActivity(intent);
                         break;
                     case "M":
                         intent = new Intent(view.getContext(), DatosMotos.class);
-                        intent.putExtras (args);
+                        intent.putExtra("comercio",comercio);
                         view.getContext().startActivity(intent);
                         break;
                 }

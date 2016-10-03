@@ -20,6 +20,8 @@ public class InAgentesMoviles {
     String am_horario_fin_militar;
     String am_observaciones;
     String am_password;
+    String am_num_cobro;
+    String am_remember;
     public InAgentesMoviles() {}
 
     public InAgentesMoviles(Integer am_empresa, Integer am_numero) {
@@ -62,6 +64,10 @@ public class InAgentesMoviles {
     public void setAm_observaciones(String am_observaciones) { this.am_observaciones = am_observaciones; }
     public String getAm_password() { return am_password; }
     public void setAm_password(String am_password) { this.am_password = am_password; }
+    public String getAm_num_cobro() {return am_num_cobro;}
+    public void setAm_num_cobro(String am_num_cobro) {this.am_num_cobro = am_num_cobro;}
+    public String getAm_remember() {return am_remember;}
+    public void setAm_remember(String am_remember) {this.am_remember = am_remember;}
 
     @Override
     public String toString() {

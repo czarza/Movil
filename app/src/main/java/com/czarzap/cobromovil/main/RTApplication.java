@@ -14,7 +14,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.observable.ConnResultObservable;
 import com.czarzap.cobromovil.observable.ConnStateObservable;
 import com.czarzap.cobromovil.utils.CrashHandler;

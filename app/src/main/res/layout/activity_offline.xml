@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.czarzap.cobromovil.menu.OfflineActivity"
+    tools:context="com.czarzap.cobromovil.offline.OfflineActivity"
     android:background="@drawable/fondo"
     android:orientation="vertical"
     android:weightSum="1">
@@ -21,32 +22,56 @@
         android:layout_weight="0.46"
         android:layout_height="0dp" />
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:text="CARGA"
-        android:id="@+id/bCarga"
-        android:drawableLeft="@drawable/ic_upload"
-        android:layout_gravity="center_horizontal"
-        android:textSize="18dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/orange_blue_selector"
-        android:textColor="@color/basic_item_bg"
-        android:paddingLeft="5dp"
-        android:paddingRight="20dp" />
+    <CheckBox
+        android:text="Subiendo Pagos..."
+        android:clickable="false"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxPagos" />
 
-    <Button
+    <CheckBox
+        android:text="Descargando Logo..."
+        android:clickable="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxLogo" />
+
+    <CheckBox
+        android:text="Descargando Rutas..."
+        android:clickable="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxRutas" />
+    <CheckBox
+        android:text="Descargando Contribuyentes..."
+        android:clickable="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxContribuyentes" />
+    <CheckBox
+        android:text="Descargando Comercios..."
+        android:clickable="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxComercios" />
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/bCarga"
         android:layout_width="200dp"
         android:layout_height="48dp"
-        android:text="DESCARGA"
-        android:id="@+id/bDescarga"
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="20sp"
+        app:cpb_selectorIdle="@drawable/button"
+        app:cpb_colorIndicator="@color/primary"
+        app:cpb_cornerRadius="12dp"
+        app:cpb_iconComplete="@mipmap/ic_action_accept"
+        app:cpb_iconError="@mipmap/ic_action_cancel"
+        app:cpb_textIdle="SINCRONIZAR"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:drawableLeft="@drawable/ic_download"
-        android:layout_gravity="center_horizontal"
-        android:textSize="18dp"
-        android:background="@drawable/orange_blue_selector"
-        android:textColor="@color/basic_item_bg"
+        android:gravity="center|center_vertical"
         android:paddingLeft="5dp"
-        android:paddingRight="20dp" />
+        android:paddingRight="5dp" />
 
 </LinearLayout>

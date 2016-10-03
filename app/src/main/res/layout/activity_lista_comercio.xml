@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/fondo"
     android:layout_height="match_parent"
-    tools:context="com.czarzap.cobromovil.menu.ListaComercioActivity">
+    tools:context="com.czarzap.cobromovil.comercio.ListaComercioActivity">
 
     <ProgressBar android:id="@+id/progress_barcomercio"
         android:layout_width="wrap_content"

@@ -1,0 +1,101 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.czarzap.cobromovil.add.SemiFijo">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/etSNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/propietario"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
+                android:inputType="textCapCharacters" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etSDomicilio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/domicilio"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
+                android:inputType="textCapCharacters"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etSOcupante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ocupante"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
+                android:inputType="textCapCharacters"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etSFrente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Frente"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
+                android:inputType="textCapCharacters"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etSFondo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fondo"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
+                android:inputType="textCapCharacters"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ruta"
+            android:id="@+id/sRutas" />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -10,9 +10,11 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.czarzap.cobromovil.DB.DatabaseManager;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.service.DatosComercioService;
+import com.czarzap.cobromovil.utils.OfflineUtil;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,8 +34,6 @@ public class CustomSuggestionsProvider extends ContentProvider {
     private static final UriMatcher uriMatcher;
 
     List<Contribuyente> comerciosList;
-    private  String url;
-    private Integer empresa;
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -43,9 +43,6 @@ public class CustomSuggestionsProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        DatabaseManager manager = new DatabaseManager(getContext());
-        url = manager.getWebService(1);
-        empresa = manager.getEmpresa();
 
         return true;
     }
@@ -90,36 +87,14 @@ public class CustomSuggestionsProvider extends ContentProvider {
     // Util ________________________________________________________________________________________
     private Cursor getFakeData (Uri uri) {
         // Columns explanation: http://developer.android.com/guide/topics/search/adding-custom-suggestions.html#HandlingSuggestionQuery
-
-        if(url==null){
-            DatabaseManager manager = new DatabaseManager(getContext());
-            url = manager.getWebService(1);
-        }
-        if(empresa ==null){
-            DatabaseManager manager = new DatabaseManager(getContext());
-            empresa = manager.getEmpresa();
-        }
-
-        if (comerciosList == null || comerciosList.isEmpty()){
-            Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
-                    .baseUrl(url)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            DatosComercioService service = retrofit.create(DatosComercioService.class);
-            Call<List<Contribuyente>> call = service.getContribuyentes(empresa);
-            call.enqueue(new Callback<List<Contribuyente>>() {
-                @Override
-                public void onResponse(Call<List<Contribuyente>> call, Response<List<Contribuyente>> response) {
-                    comerciosList = response.body();
-                    Log.d("Contribuyentes",comerciosList.toString());
-                }
-
-                @Override
-                public void onFailure(Call<List<Contribuyente>> call, Throwable t) {
-                    Log.d("Error Co",t.getMessage());
-                }
-            });
+        OfflineUtil util = new OfflineUtil();
+        if(util.fileExistsContribuyente(getContext())){
+            try {
+                comerciosList = util.contribuyentesData(getContext());
+                Log.d("Lista Comercios",comerciosList.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         MatrixCursor cursor = new MatrixCursor(new String[] {

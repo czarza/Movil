@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/fondo"
     android:layout_height="match_parent"
-    tools:context="com.czarzap.cobromovil.menu.ListaRutasActivity"
+    tools:context="com.czarzap.cobromovil.comercio.ListaRutasActivity"
     android:gravity="center|center_vertical|center_horizontal">
 
     <ProgressBar android:id="@+id/progress_bar"

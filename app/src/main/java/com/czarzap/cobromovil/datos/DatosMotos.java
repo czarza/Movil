@@ -1,11 +1,11 @@
 package com.czarzap.cobromovil.datos;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -14,16 +14,15 @@ import android.widget.Toast;
 
 import com.czarzap.cobromovil.DB.DatabaseManager;
 import com.czarzap.cobromovil.beans.InComercios;
-import com.czarzap.cobromovil.main.RTApplication;
+import com.czarzap.cobromovil.menu.BaseActivity;
 import com.czarzap.cobromovil.menu.MenuActivity;
-import com.czarzap.cobromovil.menu.VerImagenActivity;
-import com.czarzap.cobromovil.rtprinter.R;
+import com.czarzap.cobromovil.comercio.VerImagenActivity;
+import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.service.DatosComercioService;
-import com.czarzap.cobromovil.utils.ToastUtil;
+import com.czarzap.cobromovil.utils.OfflineUtil;
 import com.czarzap.cobromovil.utils.Util;
 import com.dd.CircularProgressButton;
 
-import driver.Contants;
 import driver.HsBluetoothPrintDriver;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,8 +30,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DatosMotos extends Activity {
-
+public class DatosMotos extends BaseActivity {
     private DatosComercioService service;
     private EditText etPropietario;
     private EditText etDomicilio;
@@ -49,7 +47,6 @@ public class DatosMotos extends Activity {
     private Integer empresa;
     private String tipo;
     private LinearLayout linearLayout;
-    private Bundle args;
     private AlertDialog.Builder builder;
     private Boolean existeImagen;
     HsBluetoothPrintDriver hsBluetoothPrintDriver = HsBluetoothPrintDriver.getInstance();
@@ -73,19 +70,6 @@ public class DatosMotos extends Activity {
         initViews();
     }
 
-    @Override
-    protected void onStart() {
-        // TODO Auto-generated method stub
-        super.onStart();
-        if (onStartCount > 1) {
-            this.overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right);
-        } else if (onStartCount == 1) {
-            onStartCount++;
-        }
-
-    }
-
     private void startPrinter(){
         hsBluetoothPrintDriver.Begin();
         // Get local Bluetooth adapter
@@ -98,12 +82,8 @@ public class DatosMotos extends Activity {
     }
 
     private void initViews(){
-        control = Integer.valueOf(getIntent().getExtras().getString("control"));                 // Leer los datos pasados por el QR
-        tipo = getIntent().getExtras().getString("tipo");
-        empresa = Integer.valueOf(getIntent().getExtras().getString("empresa"));
-
         builder = new AlertDialog.Builder(this);
-        DatabaseManager manager = new DatabaseManager(this);
+
         etPropietario = (EditText) findViewById(R.id.etPropietario);  // Parse xml items to Class
         etDomicilio = (EditText) findViewById(R.id.etDomicilio);
         etColonia = (EditText) findViewById(R.id.etColonia);
@@ -116,50 +96,37 @@ public class DatosMotos extends Activity {
         bImagen   = (CircularProgressButton) findViewById(R.id.bImagen);
         sStatus = (Switch) findViewById(R.id.sStatus);
         comercio = new InComercios();
-        if (RTApplication.getConnState() == Contants.UNCONNECTED) {
-            ToastUtil.show(getApplicationContext(), "Impresora Desconectada");
-            bEstado.setEnabled(false);
-        }
-        String url = manager.getWebService(1);                              // obtener el webService de Comercio
-        Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
-                .baseUrl(url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        service = retrofit.create(DatosComercioService.class);  // El servicio del Datos Comercio
+        comercio = (InComercios) getIntent().getExtras().get("comercio");
+        if(comercio == null){
+            Integer control = Integer.valueOf(getIntent().getExtras().getString("control"));
+            String tipo = getIntent().getExtras().getString("tipo");
 
-        loadActivity();
-    }
-    private void loadActivity(){
-        Call<InComercios> call = service.getComercio(empresa,control,tipo);
-        call.enqueue(new Callback<InComercios>() {
-            @Override
-            public void onResponse(Call<InComercios> call, Response<InComercios> response) {
-                comercio = response.body();  // Obtener Clase
-                if(comercio.getCom_contribuyente() != null){
-                    initComercio();
-                }
-                else{
-
+            OfflineUtil util = new OfflineUtil();
+            if(util.fileExistsComercio(getApplicationContext())){
+                comercio = util.getComercioOffline(getApplicationContext(),control,tipo);
+                if(comercio == null){                   // El QR no corresponde al Sistema
                     builder.setIcon(android.R.drawable.ic_dialog_alert);
-                    builder.setMessage("No existe ningun registro de Moto").setTitle("ERROR").setCancelable(false).setPositiveButton("Aceptar", new DialogInterface.OnClickListener()
+                    builder.setMessage("No existe el Coemrcio").setTitle("ERROR").setCancelable(false).setPositiveButton("Aceptar", new DialogInterface.OnClickListener()
                     {
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent comercioIntent = new Intent(DatosMotos.this, MenuActivity.class);
-                            DatosMotos.this.startActivity(comercioIntent);
+                            Intent menuIntent = new Intent(DatosMotos.this,MenuActivity.class);
+                            DatosMotos.this.startActivity(menuIntent);
                         }
                     });
 
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
+                else initComercio();
             }
+        }
+        else{
+            initComercio();
+        }
 
-            @Override
-            public void onFailure(Call<InComercios> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error Comercio, revise su conexion a Internet", Toast.LENGTH_LONG).show();
-            }
-        });
+
+
 
     }
 
@@ -180,7 +147,6 @@ public class DatosMotos extends Activity {
         bEstado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendDatatoCobro();
                 Util util = new Util();
                 util.printEstadoCuentaMoto(comercio,getApplicationContext(),hsBluetoothPrintDriver);
             }
@@ -189,6 +155,18 @@ public class DatosMotos extends Activity {
 
 
     private void loadImage(){
+        DatabaseManager manager = new DatabaseManager(this);
+        control = Integer.valueOf(getIntent().getExtras().getString("control"));                 // Leer los datos pasados por el QR
+        tipo = getIntent().getExtras().getString("tipo");
+        empresa = Integer.valueOf(getIntent().getExtras().getString("empresa"));
+
+        String url = manager.getWebService(1);
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(url)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        service = retrofit.create(DatosComercioService.class);
+
         Call<Boolean> call = service.existeImagen(empresa,control,tipo);
         call.enqueue(new Callback<Boolean>() {
             @Override
@@ -219,34 +197,4 @@ public class DatosMotos extends Activity {
         });
     }
 
-    private void sendDatatoCobro(){
-
-        comercio.setCom_nombre_propietario(etPropietario.getText().toString());
-        comercio.setCom_domicilio_notificaciones(etDomicilio.getText().toString());
-        comercio.setCom_ocupante(etQuien.getText().toString());
-        comercio.setCom_status("A");
-
-        Call<InComercios> call = service.setComercio(comercio);
-        call.enqueue(new Callback<InComercios>() {
-            @Override
-            public void onResponse(Call<InComercios> call, Response<InComercios> response) {
-                InComercios fijo = response.body ();
-                args = new Bundle();
-                args.putInt("empresa",fijo.getCom_empresa());
-                args.putInt("control",fijo.getCom_control());
-                args.putInt("contribuyente",fijo.getCom_contribuyente());
-                args.putString("tipo",fijo.getCom_tipo());
-                args.putString ( "propietario",fijo.getCom_nombre_propietario ());
-                args.putString("domicilio", fijo.getCom_domicilio_notificaciones () +" "+ fijo.getCom_colonia ());
-                args.putString ( "quien", fijo.getCom_ocupante ());
-
-            }
-
-            @Override
-            public void onFailure(Call<InComercios> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error, revise su conexion a Internet", Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
 }

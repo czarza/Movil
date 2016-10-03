@@ -98,7 +98,7 @@ public class Util {
 
     public void pago(InComercio_cobro_movil pagos, Context context, HsBluetoothPrintDriver hsBluetoothPrintDriver,
                      String nombreEmpresa, String domicilioEmpresa, String rfcEmpresa, String agente,
-                     String ruta, String quienOcupa, Integer contribuyente,String propietario){
+                     InComercios comercio){
         Bitmap bmp = null;
         ContextWrapper cw = new ContextWrapper(context);  // Obtener el Logo
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
@@ -107,10 +107,13 @@ public class Util {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.ALPHA_8;
         try { bmp = BitmapFactory.decodeStream(new FileInputStream(f), null, options);} catch (FileNotFoundException e) {e.printStackTrace();}
-        String qr = "qr=2&contribuyente=" + contribuyente + "&control=" + pagos.getCac_control() + "&pago=" + pagos.getCac_numero_pago();
+        String qr = "qr=2&contribuyente=" + comercio.getCom_contribuyente() + "&control=" + comercio.getCom_control()
+                + "&pago=" + pagos.getCac_numero_pago()+ "&empresa=" + comercio.getCom_empresa() + "&tipo=" + comercio.getCom_tipo();
 
-        printImage(bmp,hsBluetoothPrintDriver);
-        voidLine(hsBluetoothPrintDriver);
+        if(bmp!= null){
+            printImage(bmp,hsBluetoothPrintDriver);
+            voidLine(hsBluetoothPrintDriver);
+        }
         printTitle(nombreEmpresa,hsBluetoothPrintDriver);
         printTitle("Tesoreria Municipal",hsBluetoothPrintDriver);
         printLineCenter(domicilioEmpresa,hsBluetoothPrintDriver);
@@ -120,11 +123,11 @@ public class Util {
         voidLine(hsBluetoothPrintDriver);
         printLineBold("# Pago: " + pagos.getCac_numero_pago(),hsBluetoothPrintDriver);
         voidLine(hsBluetoothPrintDriver);
-        printLineBold("Comercio: " + tipoComercio(pagos.getCac_tipo()),hsBluetoothPrintDriver);
-        printLine("# Control: " + pagos.getCac_control(),hsBluetoothPrintDriver);
-        printLine("Ruta: " + ruta,hsBluetoothPrintDriver);
-        printLine("Propietario: " + propietario,hsBluetoothPrintDriver);
-        printLine("Ocupante: " + quienOcupa,hsBluetoothPrintDriver);
+        printLineBold("Comercio: " + tipoComercio(comercio.getCom_tipo()),hsBluetoothPrintDriver);
+        printLine("# Control: " + comercio.getCom_control(),hsBluetoothPrintDriver);
+        printLine("Ruta: " + comercio.getNombreRuta(),hsBluetoothPrintDriver);
+        printLine("Propietario: " + comercio.getCom_nombre_propietario(),hsBluetoothPrintDriver);
+        printLine("Ocupante: " + comercio.getCom_ocupante(),hsBluetoothPrintDriver);
         printLine("Aportacion: " + pagos.getCac_total(),hsBluetoothPrintDriver);
         printLine("Fecha: " + pagos.getFecha_pago(),hsBluetoothPrintDriver);
         printLine("Agente: " + agente,hsBluetoothPrintDriver);
