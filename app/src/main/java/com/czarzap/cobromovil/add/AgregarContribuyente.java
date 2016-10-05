@@ -2,9 +2,11 @@ package com.czarzap.cobromovil.add;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import com.czarzap.cobromovil.R;
+import com.czarzap.cobromovil.search.Contribuyente;
 import com.dd.CircularProgressButton;
 
 
@@ -21,7 +23,15 @@ public class AgregarContribuyente extends AppCompatActivity {
         domicilio = (EditText) findViewById(R.id.etDomicilio);
         agregar = (CircularProgressButton) findViewById(R.id.bAgregar);
 
-        a
+        agregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Contribuyente contribuyente;
+                contribuyente.getNombre(propietario);
+
+
+            }
+        });
 
     }
 }
