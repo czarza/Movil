@@ -1,82 +1,122 @@
 [
     {
-        "merged": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_seek_thumb.xml",
-        "source": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_seek_thumb.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_seek_thumb.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_seek_thumb.xml"
     },
     {
-        "merged": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_color_highlight_material.xml",
-        "source": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_color_highlight_material.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/release/color-v23/abc_tint_spinner.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/color-v23/abc_tint_spinner.xml"
     },
     {
-        "merged": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_switch_track.xml",
-        "source": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_switch_track.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_color_highlight_material.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_color_highlight_material.xml"
     },
     {
-        "merged": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_edittext.xml",
-        "source": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_edittext.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_switch_track.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_switch_track.xml"
     },
     {
-        "merged": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_edittext.xml",
-        "source": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_edittext.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_edittext.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_edittext.xml"
     },
     {
-        "merged": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_btn_colored_borderless_text_material.xml",
-        "source": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_edittext.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_edittext.xml"
     },
     {
-        "merged": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\design_tint_password_toggle.xml",
-        "source": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.0\\res\\color-v23\\design_tint_password_toggle.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
     },
     {
-        "merged": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_spinner.xml",
-        "source": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_spinner.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\design_tint_password_toggle.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.0\\res\\color-v23\\design_tint_password_toggle.xml"
     },
     {
-        "merged": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_default.xml",
-        "source": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_default.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_spinner.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_spinner.xml"
     },
     {
-        "merged": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_btn_checkable.xml",
-        "source": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_btn_checkable.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_btn_checkable.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_btn_checkable.xml"
     },
     {
-        "merged": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_btn_checkable.xml",
-        "source": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_btn_checkable.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/release/color-v23/abc_tint_switch_track.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/color-v23/abc_tint_switch_track.xml"
     },
     {
-        "merged": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_switch_thumb.xml",
-        "source": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_switch_thumb.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_btn_checkable.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_btn_checkable.xml"
     },
     {
-        "merged": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_spinner.xml",
-        "source": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_spinner.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_switch_thumb.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_switch_thumb.xml"
     },
     {
-        "merged": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_btn_colored_borderless_text_material.xml",
-        "source": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_spinner.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_spinner.xml"
     },
     {
-        "merged": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\design_tint_password_toggle.xml",
-        "source": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.0\\res\\color-v23\\design_tint_password_toggle.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/release/color-v23/abc_color_highlight_material.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/color-v23/abc_color_highlight_material.xml"
     },
     {
-        "merged": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_default.xml",
-        "source": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_default.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/release/color-v23/design_tint_password_toggle.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/design/24.2.0/res/color-v23/design_tint_password_toggle.xml"
     },
     {
-        "merged": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_color_highlight_material.xml",
-        "source": "C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_color_highlight_material.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_color_highlight_material.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_color_highlight_material.xml"
     },
     {
-        "merged": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_seek_thumb.xml",
-        "source": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_seek_thumb.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_seek_thumb.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_seek_thumb.xml"
     },
     {
-        "merged": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_switch_track.xml",
-        "source": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_switch_track.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_switch_track.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_switch_track.xml"
     },
     {
-        "merged": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_switch_thumb.xml",
-        "source": "C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_switch_thumb.xml"
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/release/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/color-v23/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_default.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_default.xml"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/release/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/release/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\design_tint_password_toggle.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.0\\res\\color-v23\\design_tint_password_toggle.xml"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/release/color-v23/abc_tint_switch_thumb.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/color-v23/abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/release/color-v23/abc_tint_edittext.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_default.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_default.xml"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_switch_thumb.xml",
+        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color-v23\\abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/release/color-v23/abc_tint_default.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/color-v23/abc_tint_default.xml"
     }
 ]

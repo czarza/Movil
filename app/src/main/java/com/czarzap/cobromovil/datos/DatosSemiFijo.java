@@ -112,6 +112,7 @@ public class DatosSemiFijo extends BaseActivity{
 
     }
     private void loadActivity(){
+        getSupportActionBar().setTitle("Datos" + comercio.getCom_nombre_propietario());
         String local;
         if(comercio.getCom_local() != null){
                     if (comercio.getCom_local().equals("S")) local = "LOCAL";

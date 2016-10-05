@@ -27,7 +27,7 @@ public interface OfflineService {
 
     @FormUrlEncoded
     @POST("api/descargaRutas.htm")
-    Call<List<InMetaCampos>> downloadRutas(@Field("empresa") Integer empresa);
+    Call<List<InMetaCampos>> downloadRutas(@Field("empresa") Integer empresa, @Field("numero") Integer numero);
 
     @POST("api/carga.htm")
     Call<String> upload(@Body String pagos);

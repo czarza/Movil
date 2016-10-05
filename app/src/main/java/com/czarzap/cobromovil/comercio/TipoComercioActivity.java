@@ -71,7 +71,10 @@ public class TipoComercioActivity extends BaseActivity {
                     bFijo.setEnabled(false);
                 }
                 if(bFijo.isEnabled()){
+                    Bundle args = new Bundle();
                     Intent intent = new Intent(TipoComercioActivity.this,BuscarContribuyente.class);
+                    args.putString("buscar","S");
+                    intent.putExtras(args);
                     TipoComercioActivity.this.startActivity(intent);
                     TipoComercioActivity.this.finish();
                 }

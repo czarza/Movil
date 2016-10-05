@@ -67,7 +67,7 @@
                 android:hint="Frente"
                 android:textColor="@color/black"
                 android:textAllCaps="true"
-                android:inputType="textCapCharacters"/>
+                android:inputType="numberDecimal" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -82,7 +82,7 @@
                 android:hint="Fondo"
                 android:textColor="@color/black"
                 android:textAllCaps="true"
-                android:inputType="textCapCharacters"/>
+                android:inputType="numberDecimal"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -95,6 +95,8 @@
             android:hint="Ruta"
             android:id="@+id/sRutas" />
         </android.support.design.widget.TextInputLayout>
+
+
 
     </LinearLayout>
 

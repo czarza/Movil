@@ -33,9 +33,6 @@
         <item name="searchViewStyle">@style/MySearchViewStyle</item>
     </style>
 
-
-
-
     <style name="rg_tab_bottom">
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">5dp</item>

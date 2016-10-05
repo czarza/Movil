@@ -12,10 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.czarzap.cobromovil.DB.DatabaseManager;
 import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.adapter.AdapterEstablecido;
+import com.czarzap.cobromovil.add.AgregarComercio;
 import com.czarzap.cobromovil.beans.InComercios;
 import com.czarzap.cobromovil.utils.OfflineUtil;
 
@@ -29,8 +31,8 @@ import br.com.customsearchable.model.ResultItem;
 public class BuscarContribuyente extends AppCompatActivity {
     private ProgressBar progress;
     private AdapterEstablecido adapter;
-    private String url;
-    private Integer empresa,numero;
+    private TextView empty;
+    String buscar;
     int onStartCount = 0;
     // Activity callbacks __________________________________________________________________________
     @Override
@@ -48,10 +50,8 @@ public class BuscarContribuyente extends AppCompatActivity {
             onStartCount = 2;
         }
         progress =(ProgressBar)findViewById(R.id.progress_barestablecido);
-        final DatabaseManager manager = new DatabaseManager ( this );  // llamar a la Base
-        url = manager.getWebService ( 1 );
-        empresa = manager.getEmpresa();
-        numero = manager.getAgente();
+        empty = (TextView) findViewById(R.id.empty);
+        buscar =  getIntent().getExtras().getString("buscar");
         CustomSearchableInfo.setTransparencyColor(Color.parseColor("#ccE3F2FD"));
 
         Intent intent = getIntent();
@@ -89,7 +89,7 @@ public class BuscarContribuyente extends AppCompatActivity {
                 progress.setVisibility(View.VISIBLE);
                 ResultItem receivedItem = bundle.getParcelable(CustomSearchableConstants.CLICKED_RESULT_ITEM);
                 Integer id = Integer.valueOf(receivedItem.getSubHeader());
-
+                getSupportActionBar().setTitle(receivedItem.getHeader());
 //                Log.i("RI.header", receivedItem.getHeader());
 //                Log.i("RI.subHeader", receivedItem.getSubHeader());
 //                Log.i("RI.leftIcon", receivedItem.getLeftIcon().toString());
@@ -108,10 +108,6 @@ public class BuscarContribuyente extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         if (id == R.id.action_search) {
             Intent intent = new Intent(this, SearchActivity.class);
@@ -134,11 +130,25 @@ public class BuscarContribuyente extends AppCompatActivity {
 
     private void loadJSON(Integer id) {
 
-        OfflineUtil util = new OfflineUtil();
-        if(util.fileExistsComercio(getApplicationContext())){
-            List<InComercios> comercios = util.getComercioxContribuyenteOffline(getApplicationContext(),id);
-            adapter = new AdapterEstablecido (comercios);
-            initViews ();
+        if(buscar.equals("S")){
+            OfflineUtil util = new OfflineUtil();
+            if(util.fileExistsComercio(getApplicationContext())){
+                List<InComercios> comercios = util.getComercioxContribuyenteOffline(getApplicationContext(),id);
+                adapter = new AdapterEstablecido (comercios);
+                initViews ();
+                if(comercios.isEmpty()){
+                    empty.setVisibility(View.VISIBLE);
+                }
+                else{
+                    empty.setVisibility(View.INVISIBLE);
+                }
+            }
         }
+        else{
+            Intent intent = new Intent(this, AgregarComercio.class);
+            intent.putExtra("id",id);
+            startActivity(intent);
+        }
+
     }
 }

@@ -151,6 +151,7 @@ public class OfflineActivity extends BaseActivity {
     }
 
     private void getContribuyentes(){
+        Log.d("numero",numero.toString());
         Call<List<Contribuyente>> callContribuyente = service.downloadContribuyentes(empresa,numero);
         callContribuyente.enqueue(new Callback<List<Contribuyente>>() {
             @Override
@@ -177,7 +178,7 @@ public class OfflineActivity extends BaseActivity {
     }
 
     private void getRutas(){
-        Call<List<InMetaCampos>> callRutas = service.downloadRutas(empresa);
+        Call<List<InMetaCampos>> callRutas = service.downloadRutas(empresa,numero);
         callRutas.enqueue(new Callback<List<InMetaCampos>>() {
             @Override
             public void onResponse(Call<List<InMetaCampos>> call, Response<List<InMetaCampos>> response) {

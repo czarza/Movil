@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.czarzap.cobromovil.R;
+import com.czarzap.cobromovil.search.BuscarContribuyente;
 
 public class Agregar extends AppCompatActivity {
     private Button bContribuyente;
@@ -57,7 +58,10 @@ public class Agregar extends AppCompatActivity {
         bComercio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent configurarIntent = new Intent(Agregar.this,AgregarComercio.class);
+                Bundle args = new Bundle();
+                Intent configurarIntent = new Intent(Agregar.this,BuscarContribuyente.class);
+                args.putString("buscar","N");
+                configurarIntent.putExtras(args);
                 startActivity(configurarIntent);
             }
         });

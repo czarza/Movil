@@ -27,7 +27,6 @@ public class AdapterEstablecido extends RecyclerView.Adapter<AdapterEstablecido.
 
     private List<InComercios> information;
     private String nombreRuta,tipo,campo;
-    private  Bundle args;
     public AdapterEstablecido(List<InComercios> information) {
         this.information = information;
     }

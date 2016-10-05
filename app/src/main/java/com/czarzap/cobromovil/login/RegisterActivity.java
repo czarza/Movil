@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -71,8 +72,8 @@ public class RegisterActivity extends Activity {
     private void initViews(){
 
         Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
-//                .baseUrl("https://www.sifi.com.mx:8443/SifiReceptoria/")
-                .baseUrl("http://192.168.0.100:8081/SifiReceptoria/")
+//              .baseUrl("https://www.sifi.com.mx:8443/SifiReceptoria/")
+                .baseUrl("http://192.168.0.13:8081/SifiReceptoria/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -133,6 +134,7 @@ public class RegisterActivity extends Activity {
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Error revise su conexion a Internet", Toast.LENGTH_LONG).show();
+                System.out.print("ERROR OBTENER FOLIO");
             }
         });
     }
@@ -158,12 +160,14 @@ public class RegisterActivity extends Activity {
                         bRegister.setProgress(-1);
                         Toast.makeText(getApplicationContext(), "No existe municipio registrado con ese RFC", Toast.LENGTH_LONG).show();
                         bRegister.setProgress(0);
+
                     }
                 }
 
                 @Override
                 public void onFailure(Call<InEmpresas> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), "Error revise su conexion a Internet", Toast.LENGTH_LONG).show();
+
                 }
             });
 
@@ -188,12 +192,19 @@ public class RegisterActivity extends Activity {
         call.enqueue(new Callback<List<InWebServices>>() {
             @Override
             public void onResponse(Call<List<InWebServices>> call, Response<List<InWebServices>> response) {   // En caso de que fue exitoso
-                List<InWebServices> webServices = response.body();   // Obtener la respuesta y castearlo a una Clase
-                 for(InWebServices webService: webServices){
-                    empresa = webService.getWs_empresa();
-                    manager.insertarWebService(webService);                      // Insertar la lista de  WebServices en la base de datos
+                    List<InWebServices> webServices = response.body();   // Obtener la respuesta y castearlo a una Clase
+                if(!webServices.isEmpty()){
+                    for(InWebServices webService: webServices){
+                        empresa = webService.getWs_empresa();
+                        manager.insertarWebService(webService);                      // Insertar la lista de  WebServices en la base de datos
+                    }
+                    ObtenerEmpresa();
                 }
-                ObtenerEmpresa();
+                else{
+                    Toast.makeText(getApplicationContext(), "Error, revise el RFC Ingresado", Toast.LENGTH_LONG).show();
+                    bRegister.setProgress(0);
+                }
+
             }
 
             @Override 
