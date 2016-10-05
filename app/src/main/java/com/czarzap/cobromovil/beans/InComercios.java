@@ -29,6 +29,7 @@ public class InComercios implements Serializable {
 	private String ultFechaPago;
 	private String nombreRuta;
 	private BigDecimal tarifa;
+	private Integer agente;
 
 	public InComercios() {
 		super();
@@ -93,6 +94,8 @@ public class InComercios implements Serializable {
 	public void setTarifa(BigDecimal tarifa) {this.tarifa = tarifa;}
 	public String getUltFechaPago() {return ultFechaPago;}
 	public void setUltFechaPago(String ultFechaPago) {this.ultFechaPago = ultFechaPago;}
+	public Integer getAgente() {return agente;}
+	public void setAgente(Integer agente) {this.agente = agente;}
 
 	@Override
 	public String toString() {

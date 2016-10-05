@@ -50,7 +50,7 @@ public class TipoComercioActivity extends BaseActivity {
         bSemifijo     = (Button) findViewById(R.id.bSemiFijo);
         bCorte = (Button) findViewById(R.id.bCorte);
         bPagos = (Button) findViewById(R.id.bPagos);
-        bAdd.setEnabled(false);
+//        bAdd.setEnabled(false);
         loadActivity();
     }
 

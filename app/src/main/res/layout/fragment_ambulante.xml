@@ -14,10 +14,25 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/etANombre"
+                android:id="@+id/etAPropietario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/propietario"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
+                android:inputType="textCapCharacters"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/etADomicilio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Domicilio Notificaciones"
                 android:textColor="@color/black"
                 android:textAllCaps="true"
                 android:inputType="textCapCharacters"/>

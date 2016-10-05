@@ -6,13 +6,18 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.czarzap.cobromovil.DB.DatabaseManager;
 import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.beans.InComercios;
+import com.czarzap.cobromovil.beans.InMetaCampos;
 import com.czarzap.cobromovil.datos.DatosAmbulante;
 import com.czarzap.cobromovil.datos.DatosEstablecido;
 import com.czarzap.cobromovil.datos.DatosMotos;
@@ -24,6 +29,7 @@ import com.dd.CircularProgressButton;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,11 +42,13 @@ public class AgregarComercio extends AppCompatActivity {
     CircularProgressButton agregarComercio,alta,regresar,cobrar;
     LinearLayout menu;
     DatabaseManager manager ;
-
+    Spinner spinner;
+    List<String> items;
+    RadioButton semi,ambulante;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         getSupportActionBar().setTitle("Nuevo Comercio");
+        getSupportActionBar().setTitle("Nuevo Comercio");
         setContentView(R.layout.activity_agregar_comercio);
 
         agregarComercio = (CircularProgressButton) findViewById(R.id.bAddComercio);
@@ -48,19 +56,45 @@ public class AgregarComercio extends AppCompatActivity {
         regresar = (CircularProgressButton) findViewById(R.id.bARegresar);
         cobrar = (CircularProgressButton) findViewById(R.id.bACobrar);
         menu = (LinearLayout) findViewById(R.id.LAgregar);
-        manager = new DatabaseManager(getApplicationContext());
+        semi = (RadioButton) findViewById(R.id.rbSemi);
+        ambulante = (RadioButton) findViewById(R.id.rbAmbulante);
+        OfflineUtil util = new OfflineUtil();
+        try {
+            List<InMetaCampos> rutas = util.rutasData(getApplicationContext());
+            items = new ArrayList<>();
+            for(InMetaCampos campo : rutas){
+                items.add(campo.getMc_nombre());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        manager = new DatabaseManager(this);
+
         Fragment fragment;
-        fragment = new Establecido();
+        Log.d("ITEMS",items.toString());
+        if(items.isEmpty()){
+            ambulante.setChecked(true);
+            semi.setChecked(false);
+            fragment = new Ambulante();
+        }
+        else{
+            semi.setChecked(true);
+            ambulante.setChecked(false);
+            fragment = new SemiFijo();
+        }
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentComercio, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
 
-
         agregarComercio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                agregarSemifijo();
+                RadioButton rb = (RadioButton) findViewById(R.id.rbSemi);
+                if(rb.isChecked()) agregarSemifijo();
+                else agregarAmbulante();
             }
         });
         regresar.setOnClickListener(new View.OnClickListener() {
@@ -82,14 +116,7 @@ public class AgregarComercio extends AppCompatActivity {
 
     public void ChangeFragment(View view){
         Fragment fragment;
-        if(view == findViewById(R.id.rbEstablecido)){
-            fragment = new Establecido();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentComercio, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        }
-        else if (view == findViewById(R.id.rbSemi)){
+        if (view == findViewById(R.id.rbSemi)){
             fragment = new SemiFijo();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.fragmentComercio, fragment);
@@ -106,6 +133,20 @@ public class AgregarComercio extends AppCompatActivity {
 
     }
 
+    private void agregarAmbulante(){
+        Integer idContribuyente = (Integer) getIntent().getExtras().get("id");
+        EditText propietario = (EditText) findViewById(R.id.etAPropietario);
+        EditText domicilio = (EditText) findViewById(R.id.etADomicilio);
+
+        Integer empresa = manager.getEmpresa();
+        InComercios comercio = new InComercios();
+        comercio.setCom_empresa(empresa);
+        comercio.setCom_tipo("A");
+        comercio.setCom_contribuyente(idContribuyente);
+        comercio.setCom_nombre_propietario(propietario.getText().toString());
+        comercio.setCom_domicilio_notificaciones(domicilio.getText().toString());
+        sendComercio(comercio);
+    }
 
     private void agregarSemifijo(){
         Integer idContribuyente = (Integer) getIntent().getExtras().get("id");
@@ -114,6 +155,7 @@ public class AgregarComercio extends AppCompatActivity {
         EditText ocupante = (EditText) findViewById(R.id.etSOcupante);
         EditText frente = (EditText) findViewById(R.id.etSFrente);
         EditText fondo = (EditText) findViewById(R.id.etSFondo);
+
         Integer empresa = manager.getEmpresa();
         InComercios comercio = new InComercios();
         comercio.setCom_empresa(empresa);
@@ -124,12 +166,13 @@ public class AgregarComercio extends AppCompatActivity {
         comercio.setCom_ocupante(ocupante.getText().toString());
         comercio.setCom_frente(new BigDecimal (frente.getText().toString()));
         comercio.setCom_fondo(new BigDecimal(fondo.getText().toString()));
-
+        if(spinner.getSelectedItem().toString() != null)  comercio.setCom_ruta(spinner.getSelectedItem().toString());
         sendComercio(comercio);
     }
 
     private void sendComercio(InComercios comercio) {
         String url = manager.getWebService(1);
+        comercio.setAgente(manager.getAgente());
         Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -150,14 +193,14 @@ public class AgregarComercio extends AppCompatActivity {
                     }
                 }
                 else{
-                    // No se agrego el numero de Control del comercio
+                    Toast.makeText(getApplicationContext(), "No tiene permiso para agregar Comercio", Toast.LENGTH_LONG).show();
                     agregarComercio.setProgress(-1);
                 }
             }
 
             @Override
             public void onFailure(Call<InComercios> call, Throwable t) {
-                // Fallo de Conexion
+                Toast.makeText(getApplicationContext(), "Error, revise su conexion a Internet", Toast.LENGTH_LONG).show();
             }
         });
 

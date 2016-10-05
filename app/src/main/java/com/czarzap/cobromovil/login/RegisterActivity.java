@@ -72,8 +72,8 @@ public class RegisterActivity extends Activity {
     private void initViews(){
 
         Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
-//              .baseUrl("https://www.sifi.com.mx:8443/SifiReceptoria/")
-                .baseUrl("http://192.168.0.13:8081/SifiReceptoria/")
+              .baseUrl("https://www.sifi.com.mx:8443/SifiReceptoria/")
+//                .baseUrl("http://192.168.0.13:8081/SifiReceptoria/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
