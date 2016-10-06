@@ -214,6 +214,7 @@ public class OfflineActivity extends BaseActivity {
             List<InComercios> enviarComercios = util.comerciosData(getApplicationContext());
             enviarComercios.get(0).setAgente(manager.getAgente());
             Gson gson = new Gson();
+            
             String json = gson.toJson(enviarComercios);
             Call<List<InComercios>> call = service.downloadComercios(json);
             call.enqueue(new Callback<List<InComercios>>() {
