@@ -15,115 +15,135 @@
     tools:context="com.czarzap.cobromovil.add.AgregarComercio"
     android:gravity="center_horizontal">
 
-    <RadioGroup
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation='horizontal'
-        android:checkedButton="@+id/rbEstablecido"
-        android:weightSum="3">
+        android:layout_height="match_parent">
 
-        <RadioButton
-            android:text="Semi-Fijo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rbSemi"
-            android:layout_weight="1"
-            android:onClick="ChangeFragment"
-            android:checked="true" />
 
-        <RadioButton
-            android:text="Ambulante"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rbAmbulante"
-            android:layout_weight="1"
-            android:onClick="ChangeFragment" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </RadioGroup>
 
-    <FrameLayout
-        android:id="@+id/fragmentComercio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation='horizontal'
+                android:checkedButton="@+id/rbEstablecido"
+                android:weightSum="3">
 
-    <com.dd.CircularProgressButton
-        android:id="@+id/bAddComercio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/primary_text_dark"
-        android:textSize="20sp"
-        app:cpb_selectorIdle="@drawable/button"
-        app:cpb_colorIndicator="@color/primary"
-        app:cpb_cornerRadius="12dp"
-        app:cpb_iconComplete="@mipmap/ic_action_accept"
-        app:cpb_iconError="@mipmap/ic_action_cancel"
-        app:cpb_textIdle="AGREGAR COMERCIO"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:gravity="center|center_vertical"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"  />
+                <RadioButton
+                    android:text="Semi-Fijo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rbSemi"
+                    android:layout_weight="1"
+                    android:onClick="ChangeFragment"
+                    android:checked="true" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_weight="0"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:id="@+id/LAgregar"
-        android:visibility="invisible">
+                <RadioButton
+                    android:text="Ambulante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rbAmbulante"
+                    android:layout_weight="1"
+                    android:onClick="ChangeFragment" />
 
-        <com.dd.CircularProgressButton
-            android:id="@+id/bARegresar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/primary_text_dark"
-            android:textSize="20sp"
-            app:cpb_selectorIdle="@drawable/button"
-            app:cpb_colorIndicator="@color/primary"
-            app:cpb_cornerRadius="12dp"
-            app:cpb_iconComplete="@mipmap/ic_action_accept"
-            app:cpb_iconError="@mipmap/ic_action_cancel"
-            app:cpb_textIdle="Menu"
-            android:layout_gravity="center"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_weight="1" />
+            </RadioGroup>
 
-        <com.dd.CircularProgressButton
-            android:id="@+id/bANuevo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/primary_text_dark"
-            android:textSize="20sp"
-            app:cpb_selectorIdle="@drawable/button"
-            app:cpb_colorIndicator="@color/primary"
-            app:cpb_cornerRadius="12dp"
-            app:cpb_iconComplete="@mipmap/ic_action_accept"
-            app:cpb_iconError="@mipmap/ic_action_cancel"
-            app:cpb_textIdle=" + Alta"
-            android:layout_gravity="center"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_weight="1" />
+            <FrameLayout
+                android:id="@+id/fragmentComercio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <com.dd.CircularProgressButton
-            android:id="@+id/bACobrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/primary_text_dark"
-            android:textSize="20sp"
-            app:cpb_selectorIdle="@drawable/button"
-            app:cpb_colorIndicator="@color/primary"
-            app:cpb_cornerRadius="12dp"
-            app:cpb_iconComplete="@mipmap/ic_action_accept"
-            app:cpb_iconError="@mipmap/ic_action_cancel"
-            app:cpb_textIdle="Cobrar"
-            android:paddingLeft="5dp"
-            android:layout_gravity="center"
-            android:paddingRight="5dp"
-            android:layout_weight="1" />
+            <com.dd.CircularProgressButton
+                android:id="@+id/bAddComercio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/primary_text_dark"
+                android:textSize="20sp"
+                app:cpb_selectorIdle="@drawable/button"
+                app:cpb_colorIndicator="@color/primary"
+                app:cpb_cornerRadius="12dp"
+                app:cpb_iconComplete="@mipmap/ic_action_accept"
+                app:cpb_iconError="@mipmap/ic_action_cancel"
+                app:cpb_textIdle="AGREGAR COMERCIO"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center|center_vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"  />
 
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:id="@+id/LAgregar"
+                android:visibility="invisible">
+
+                <com.dd.CircularProgressButton
+                    android:id="@+id/bARegresar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/primary_text_dark"
+                    android:textSize="20sp"
+                    app:cpb_selectorIdle="@drawable/button"
+                    app:cpb_colorIndicator="@color/primary"
+                    app:cpb_cornerRadius="12dp"
+                    app:cpb_iconComplete="@mipmap/ic_action_accept"
+                    app:cpb_iconError="@mipmap/ic_action_cancel"
+                    app:cpb_textIdle="Menu"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:layout_weight="1" />
+
+                <com.dd.CircularProgressButton
+                    android:id="@+id/bANuevo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/primary_text_dark"
+                    android:textSize="20sp"
+                    app:cpb_selectorIdle="@drawable/button"
+                    app:cpb_colorIndicator="@color/primary"
+                    app:cpb_cornerRadius="12dp"
+                    app:cpb_iconComplete="@mipmap/ic_action_accept"
+                    app:cpb_iconError="@mipmap/ic_action_cancel"
+                    app:cpb_textIdle=" + Alta"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:layout_weight="1" />
+
+                <com.dd.CircularProgressButton
+                    android:id="@+id/bACobrar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/primary_text_dark"
+                    android:textSize="20sp"
+                    app:cpb_selectorIdle="@drawable/button"
+                    app:cpb_colorIndicator="@color/primary"
+                    app:cpb_cornerRadius="12dp"
+                    app:cpb_iconComplete="@mipmap/ic_action_accept"
+                    app:cpb_iconError="@mipmap/ic_action_cancel"
+                    app:cpb_textIdle="Cobrar"
+                    android:paddingLeft="5dp"
+                    android:layout_gravity="center"
+                    android:paddingRight="5dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+
 
 </LinearLayout>
