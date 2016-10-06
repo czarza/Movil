@@ -10,7 +10,10 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.czarzap.cobromovil.add.AgregarComercio">
+    android:background="@drawable/fondo"
+
+    tools:context="com.czarzap.cobromovil.add.AgregarComercio"
+    android:gravity="center_horizontal">
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -56,16 +59,16 @@
         app:cpb_iconError="@mipmap/ic_action_cancel"
         app:cpb_textIdle="AGREGAR COMERCIO"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:gravity="center|center_vertical"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp" />
+        android:paddingRight="5dp"  />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_weight="3"
-        android:layout_height="0dp"
+        android:layout_weight="0"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:id="@+id/LAgregar"
         android:visibility="invisible">

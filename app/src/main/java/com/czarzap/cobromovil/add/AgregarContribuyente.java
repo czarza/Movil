@@ -1,5 +1,6 @@
 package com.czarzap.cobromovil.add;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.czarzap.cobromovil.DB.DatabaseManager;
 import com.czarzap.cobromovil.R;
+import com.czarzap.cobromovil.menu.MenuActivity;
 import com.czarzap.cobromovil.search.Contribuyente;
 import com.czarzap.cobromovil.service.AgregarService;
 import com.czarzap.cobromovil.utils.OfflineUtil;
@@ -29,6 +31,7 @@ public class AgregarContribuyente extends AppCompatActivity {
     CircularProgressButton agregar,regresar,nuevo,comercio;
     DatabaseManager manager ;
     LinearLayout linear;
+    Integer ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +45,9 @@ public class AgregarContribuyente extends AppCompatActivity {
         regresar = (CircularProgressButton) findViewById(R.id.bCRegresar);
         nuevo = (CircularProgressButton) findViewById(R.id.bCAlta);
         comercio = (CircularProgressButton) findViewById(R.id.bCComercio);
-
+        linear = (LinearLayout) findViewById(R.id.LAgregarContribuyente);
         manager = new DatabaseManager(this);
-        linear = (LinearLayout) findViewById(R.id.LCAgregar);
+
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,19 +60,23 @@ public class AgregarContribuyente extends AppCompatActivity {
         regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent comercioIntent = new Intent(AgregarContribuyente.this,MenuActivity.class);
+                AgregarContribuyente.this.startActivity(comercioIntent);
             }
         });
         nuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent comercioIntent = new Intent(AgregarContribuyente.this,Agregar.class);
+                AgregarContribuyente.this.startActivity(comercioIntent);
             }
         });
         comercio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(AgregarContribuyente.this,AgregarComercio.class);
+                intent.putExtra("id",ID);
+                startActivity(intent);
             }
         });
 
@@ -91,6 +98,7 @@ public class AgregarContribuyente extends AppCompatActivity {
                 if(response.body() != null){
                     try {
                         Contribuyente contribuyente = response.body();
+                        ID = contribuyente.getId();
                         saveContribuyente(contribuyente);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -117,6 +125,7 @@ public class AgregarContribuyente extends AppCompatActivity {
         contribuyentes.add(contribuyente);
         util.initDownloadContribuyentes(contribuyentes,getApplicationContext());
         agregar.setProgress(100);
+        agregar.setEnabled(false);
         linear.setVisibility(View.VISIBLE);
 
     }

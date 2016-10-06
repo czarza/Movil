@@ -1,6 +1,5 @@
 package com.czarzap.cobromovil.datos;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +20,10 @@ import com.czarzap.cobromovil.menu.MenuActivity;
 import com.czarzap.cobromovil.pagos.PagosSemiFijo;
 import com.czarzap.cobromovil.utils.OfflineUtil;
 import com.dd.CircularProgressButton;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.List;
 
 
 public class DatosSemiFijo extends BaseActivity{
@@ -112,7 +115,7 @@ public class DatosSemiFijo extends BaseActivity{
 
     }
     private void loadActivity(){
-        getSupportActionBar().setTitle("Datos" + comercio.getCom_nombre_propietario());
+        getSupportActionBar().setTitle("Datos " + comercio.getCom_nombre_propietario());
         String local;
         if(comercio.getCom_local() != null){
                     if (comercio.getCom_local().equals("S")) local = "LOCAL";
@@ -142,9 +145,14 @@ public class DatosSemiFijo extends BaseActivity{
             public void onClick(View v) {
                 if(sStatus.isChecked()) {
                     Log.d("Comercio",comercio.toString());
-                    Intent comercioIntent = new Intent(DatosSemiFijo.this, PagosSemiFijo.class);
-                    comercioIntent.putExtra("comercio",comercio);
-                    DatosSemiFijo.this.startActivity(comercioIntent);
+                    try {
+                        saveComercio(comercio);
+                        Intent comercioIntent = new Intent(DatosSemiFijo.this, PagosSemiFijo.class);
+                        comercioIntent.putExtra("comercio",comercio);
+                        DatosSemiFijo.this.startActivity(comercioIntent);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "El comercio debe de estar Activo", Toast.LENGTH_LONG).show();
@@ -162,4 +170,25 @@ public class DatosSemiFijo extends BaseActivity{
         }
         return true;
     }
+
+    private void saveComercio(InComercios comercio) throws IOException {
+        OfflineUtil util = new OfflineUtil();
+        List<InComercios> comercios = util.comerciosData(getApplicationContext());
+        Integer empresa = comercio.getCom_empresa();
+        String tipo = comercio.getCom_tipo();
+        Integer control = comercio.getCom_control();
+        for(InComercios c : comercios){
+            if(c.getCom_empresa().equals(empresa) && c.getCom_tipo().equals(tipo) && c.getCom_control().equals(control)){
+                c.setCom_nombre_propietario(etPropietario.getText().toString());
+                c.setCom_domicilio(etDomicilio.getText().toString());
+                c.setCom_colonia(etColonia.getText().toString());
+                c.setCom_domicilio_notificaciones(etDomicilioNotif.getText().toString());
+                c.setCom_frente(new BigDecimal(etFrente.getText().toString()));
+                c.setCom_fondo(new BigDecimal(etFondo.getText().toString()));
+                c.setCom_ocupante(etQuien.getText().toString());
+            }
+        }
+        util.initDownloadComercios(comercios,getApplicationContext());
+    }
+
 }

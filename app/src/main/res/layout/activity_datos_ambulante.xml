@@ -18,7 +18,7 @@
             android:id="@+id/aPropietario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
+            android:maxLines="1"
             android:hint="@string/propietario"
             android:textAllCaps="true"
             android:inputType="textCapCharacters" />
@@ -34,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/aDomicilio"
+            android:maxLines="1"
             android:hint="@string/domicilio"
             android:inputType="textCapCharacters" />
     </android.support.design.widget.TextInputLayout>
@@ -47,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/aColonia"
+            android:maxLines="1"
             android:inputType="textCapCharacters"
             android:hint="Colonia" />
     </android.support.design.widget.TextInputLayout>
@@ -61,6 +63,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/aQuien"
             android:hint="Quien Ocupa"
+            android:maxLines="1"
             android:inputType="textCapCharacters"
             android:layout_below="@+id/frente"
             android:layout_alignParentLeft="true"

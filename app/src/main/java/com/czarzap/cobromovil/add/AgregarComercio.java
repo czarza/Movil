@@ -42,7 +42,6 @@ public class AgregarComercio extends AppCompatActivity {
     CircularProgressButton agregarComercio,alta,regresar,cobrar;
     LinearLayout menu;
     DatabaseManager manager ;
-    Spinner spinner;
     List<String> items;
     RadioButton semi,ambulante;
     @Override
@@ -135,6 +134,7 @@ public class AgregarComercio extends AppCompatActivity {
 
     private void agregarAmbulante(){
         Integer idContribuyente = (Integer) getIntent().getExtras().get("id");
+        Log.d("ambulante",idContribuyente.toString());
         EditText propietario = (EditText) findViewById(R.id.etAPropietario);
         EditText domicilio = (EditText) findViewById(R.id.etADomicilio);
 
@@ -142,6 +142,7 @@ public class AgregarComercio extends AppCompatActivity {
         InComercios comercio = new InComercios();
         comercio.setCom_empresa(empresa);
         comercio.setCom_tipo("A");
+        comercio.setCom_status("A");
         comercio.setCom_contribuyente(idContribuyente);
         comercio.setCom_nombre_propietario(propietario.getText().toString());
         comercio.setCom_domicilio_notificaciones(domicilio.getText().toString());
@@ -160,13 +161,15 @@ public class AgregarComercio extends AppCompatActivity {
         InComercios comercio = new InComercios();
         comercio.setCom_empresa(empresa);
         comercio.setCom_tipo("S");
+        comercio.setCom_status("A");
         comercio.setCom_contribuyente(idContribuyente);
         comercio.setCom_nombre_propietario(propietario.getText().toString());
         comercio.setCom_domicilio_notificaciones(domicilio.getText().toString());
         comercio.setCom_ocupante(ocupante.getText().toString());
         comercio.setCom_frente(new BigDecimal (frente.getText().toString()));
         comercio.setCom_fondo(new BigDecimal(fondo.getText().toString()));
-        if(spinner.getSelectedItem().toString() != null)  comercio.setCom_ruta(spinner.getSelectedItem().toString());
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerRutas);
+        comercio.setCom_ruta(spinner.getSelectedItem().toString());
         sendComercio(comercio);
     }
 
@@ -185,7 +188,8 @@ public class AgregarComercio extends AppCompatActivity {
             @Override
             public void onResponse(Call<InComercios> call, Response<InComercios> response) {
                 InComercios comercio = response.body();
-                if(comercio.getCom_control() != null){
+                Integer control = comercio.getCom_control();
+                if(control != null){
                     try {
                         saveComercio(comercio);
                     } catch (IOException e) {
@@ -208,8 +212,13 @@ public class AgregarComercio extends AppCompatActivity {
     }
 
     private void saveComercio(final InComercios comercio) throws IOException {
-
-
+        OfflineUtil util = new OfflineUtil();
+        List<InComercios> comercios = util.comerciosData(getApplicationContext());
+        comercios.add(comercio);
+        util.initDownloadComercios(comercios,getApplicationContext());
+        agregarComercio.setProgress(100);
+        agregarComercio.setEnabled(false);
+        menu.setVisibility(View.VISIBLE);
         cobrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,24 +231,24 @@ public class AgregarComercio extends AppCompatActivity {
         Intent intent;
         switch (comercio.getCom_tipo()){
             case "S":
-                intent = new Intent(getApplicationContext(), DatosSemiFijo.class);
+                intent = new Intent(this, DatosSemiFijo.class);
                 intent.putExtra("comercio",comercio);
-                getApplicationContext().startActivity(intent);
+                startActivity(intent);
                 break;
             case "F":
-                intent = new Intent(getApplicationContext (), DatosEstablecido.class);
+                intent = new Intent(this, DatosEstablecido.class);
                 intent.putExtra("comercio",comercio);
-                getApplicationContext().startActivity(intent);
+                startActivity(intent);
                 break;
             case "A":
-                intent = new Intent(getApplicationContext(), DatosAmbulante.class);
+                intent = new Intent(this, DatosAmbulante.class);
                 intent.putExtra("comercio",comercio);
-                getApplicationContext().startActivity(intent);
+                startActivity(intent);
                 break;
             case "M":
-                intent = new Intent(getApplicationContext(), DatosMotos.class);
+                intent = new Intent(this, DatosMotos.class);
                 intent.putExtra("comercio",comercio);
-                getApplicationContext().startActivity(intent);
+                startActivity(intent);
                 break;
         }
     }

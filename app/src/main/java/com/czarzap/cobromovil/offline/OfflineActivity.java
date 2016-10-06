@@ -163,7 +163,11 @@ public class OfflineActivity extends BaseActivity {
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
-                        getComercios();
+                        try {
+                            getComercios();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, 800);
             }
@@ -205,35 +209,74 @@ public class OfflineActivity extends BaseActivity {
 
     }
 
-    private void getComercios(){
-        Call<List<InComercios>> call = service.downloadComercios(empresa,numero);
-        call.enqueue(new Callback<List<InComercios>>() {
-            @Override
-            public void onResponse(Call<List<InComercios>> call, Response<List<InComercios>> response) {
-                comercios = response.body();
-                Log.d("Comercio",comercios.toString());
-                util.initDownloadComercios(comercios,getApplicationContext());
-                com.setChecked(true);
-                bUpload.setProgress(100);
+    private void getComercios() throws IOException {
+        if(util.fileExistsComercio(getApplicationContext())){
+            List<InComercios> enviarComercios = util.comerciosData(getApplicationContext());
+            enviarComercios.get(0).setAgente(manager.getAgente());
+            Gson gson = new Gson();
+            String json = gson.toJson(enviarComercios);
+            Call<List<InComercios>> call = service.downloadComercios(json);
+            call.enqueue(new Callback<List<InComercios>>() {
+                @Override
+                public void onResponse(Call<List<InComercios>> call, Response<List<InComercios>> response) {
+                    comercios = response.body();
+                    Log.d("Comercio",comercios.toString());
+                    util.initDownloadComercios(comercios,getApplicationContext());
+                    com.setChecked(true);
+                    bUpload.setProgress(100);
 
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        Intent menuIntent = new Intent(OfflineActivity.this, MenuActivity.class);
-                        OfflineActivity.this.startActivity(menuIntent);
-                        bUpload.setProgress(0);
-                    }
-                }, 800);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            Intent menuIntent = new Intent(OfflineActivity.this, MenuActivity.class);
+                            OfflineActivity.this.startActivity(menuIntent);
+                            bUpload.setProgress(0);
+                        }
+                    }, 800);
 
-            }
+                }
 
-            @Override
-            public void onFailure(Call<List<InComercios>> call, Throwable t) {
-                Log.d("Descarga Comercios",t.getMessage());
-                Toast.makeText(getApplicationContext(), "Revise su Conexion, no se ha descargado los Comercios", Toast.LENGTH_LONG).show();
-                bUpload.setProgress(-1);
-            }
-        });
+                @Override
+                public void onFailure(Call<List<InComercios>> call, Throwable t) {
+                    Log.d("Descarga Comercios",t.getMessage());
+                    Toast.makeText(getApplicationContext(), "Revise su Conexion, no se ha descargado los Comercios", Toast.LENGTH_LONG).show();
+                    bUpload.setProgress(-1);
+                }
+            });
+        }
+
+
+        else{
+            Call<List<InComercios>> call = service.donwloadComerciosnoUpdate(empresa,numero);
+            call.enqueue(new Callback<List<InComercios>>() {
+                @Override
+                public void onResponse(Call<List<InComercios>> call, Response<List<InComercios>> response) {
+                    comercios = response.body();
+                    Log.d("Comercio",comercios.toString());
+                    util.initDownloadComercios(comercios,getApplicationContext());
+                    com.setChecked(true);
+                    bUpload.setProgress(100);
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            Intent menuIntent = new Intent(OfflineActivity.this, MenuActivity.class);
+                            OfflineActivity.this.startActivity(menuIntent);
+                            bUpload.setProgress(0);
+                        }
+                    }, 800);
+                }
+
+                @Override
+                public void onFailure(Call<List<InComercios>> call, Throwable t) {
+                    Log.d("Descarga Comercios",t.getMessage());
+                    Toast.makeText(getApplicationContext(), "Revise su Conexion, no se ha descargado los Comercios", Toast.LENGTH_LONG).show();
+                    bUpload.setProgress(-1);
+                }
+            });
+
+        }
+
     }
 
     private void setFolio(){
@@ -273,13 +316,10 @@ public class OfflineActivity extends BaseActivity {
                         setFolio();
                         try {
                             util.PagosDelete(getApplicationContext());
-                            util.RutasDelete(getApplicationContext());
-                            util.ComerciosDelete(getApplicationContext());
-                            util.ContribuyentesDelete(getApplicationContext());
-                            download();
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         }
+                        download();
                     }
 
                 }

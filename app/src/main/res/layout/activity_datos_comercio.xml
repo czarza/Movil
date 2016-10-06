@@ -49,12 +49,11 @@
             android:id="@+id/etPropietario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
+            android:maxLines="1"
             android:hint="@string/propietario"
             android:textColor="@color/black"
             android:textAllCaps="true"
-            android:inputType="textCapCharacters"
-            android:enabled="false" />
+            android:inputType="textCapCharacters" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -68,9 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etDomicilio"
-            android:enabled="false"
             android:textColor="@color/black"
             android:hint="Domicilio"
+            android:maxLines="1"
             android:inputType="textCapCharacters" />
     </android.support.design.widget.TextInputLayout>
 
@@ -86,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etColonia"
-            android:enabled="false"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:inputType="textCapCharacters"
             android:hint="Colonia" />
@@ -104,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/domicilioNotificaciones"
-            android:enabled="false"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:inputType="textCapCharacters"
             android:hint="Domicilio Notificaciones" />
@@ -128,7 +127,6 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="9"
-                android:enabled="false"
                 android:id="@+id/etFrente"
                 android:textColor="@color/black"
                 android:layout_alignParentTop="true"
@@ -151,11 +149,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:enabled="false"
                 android:textColor="@color/black"
                 android:id="@+id/etFondo"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:hint="Fondo" />
 
@@ -166,7 +162,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/frente"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:orientation="vertical">
 
@@ -176,10 +171,9 @@
                 android:id="@+id/etQuien"
                 android:textColor="@color/black"
                 android:hint="Quien Ocupa"
-                android:enabled="false"
+                android:maxLines="1"
                 android:inputType="textCapCharacters"
                 android:layout_below="@+id/frente"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
         </android.support.design.widget.TextInputLayout>
 
@@ -190,9 +184,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/quienOcupa"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/fondo"
             android:layout_toStartOf="@+id/fondo"
             android:layout_marginTop="5dp">
             <EditText
@@ -203,7 +195,6 @@
                 android:hint="@string/numero_de_control"
                 android:enabled="false"
                 android:layout_alignTop="@+id/etLicencia"
-                android:layout_toRightOf="@+id/frente"
                 android:layout_toEndOf="@+id/frente" />
 
         </android.support.design.widget.TextInputLayout>
@@ -215,9 +206,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/quienOcupa"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@+id/control"
             android:layout_toEndOf="@+id/control"
             android:layout_marginTop="5dp">
             <EditText
@@ -229,7 +218,6 @@
                 android:hint="@string/ultima_licencia"
                 android:enabled="false"
                 android:layout_below="@+id/etQuien"
-                android:layout_toLeftOf="@+id/fondo"
                 android:layout_toStartOf="@+id/fondo" />
 
         </android.support.design.widget.TextInputLayout>

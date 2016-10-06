@@ -17,9 +17,12 @@ import retrofit2.http.POST;
 
 public interface OfflineService {
 
-    @FormUrlEncoded
     @POST("api/descargaComercios.htm")
-    Call<List<InComercios>> downloadComercios(@Field("empresa") Integer empresa, @Field("numero") Integer numero);
+    Call<List<InComercios>> downloadComercios(@Body String comercios);
+
+    @FormUrlEncoded
+    @POST("api/descargaComerciosSinActualizar.htm")
+    Call<List<InComercios>> donwloadComerciosnoUpdate(@Field("empresa") Integer empresa, @Field("numero") Integer numero);
 
     @FormUrlEncoded
     @POST("api/descargaContribuyentes.htm")
