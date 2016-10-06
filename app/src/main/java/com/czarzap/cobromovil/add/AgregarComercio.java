@@ -208,12 +208,7 @@ public class AgregarComercio extends AppCompatActivity {
     }
 
     private void saveComercio(final InComercios comercio) throws IOException {
-        OfflineUtil util = new OfflineUtil();
-        List<InComercios> comercios = util.comerciosData(getApplicationContext());
-        comercios.add(comercio);
-        util.initDownloadComercios(comercios,getApplicationContext());
-        agregarComercio.setProgress(100);
-        menu.setVisibility(View.VISIBLE);
+
 
         cobrar.setOnClickListener(new View.OnClickListener() {
             @Override
