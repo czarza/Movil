@@ -125,7 +125,9 @@ public class Util {
         voidLine(hsBluetoothPrintDriver);
         printLineBold("Comercio: " + tipoComercio(comercio.getCom_tipo()),hsBluetoothPrintDriver);
         printLine("# Control: " + comercio.getCom_control(),hsBluetoothPrintDriver);
-        printLine("Ruta: " + comercio.getNombreRuta(),hsBluetoothPrintDriver);
+
+        if(comercio.getNombreRuta() == null) printLine("Ruta: " + comercio.getCom_ruta(),hsBluetoothPrintDriver);
+            else  printLine("Ruta: " + comercio.getNombreRuta(),hsBluetoothPrintDriver);
         printLine("Propietario: " + comercio.getCom_nombre_propietario(),hsBluetoothPrintDriver);
         printLine("Ocupante: " + comercio.getCom_ocupante(),hsBluetoothPrintDriver);
         printLine("Aportacion: " + pagos.getCac_total(),hsBluetoothPrintDriver);

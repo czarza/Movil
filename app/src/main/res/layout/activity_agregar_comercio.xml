@@ -11,9 +11,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@drawable/fondo"
-
-    tools:context="com.czarzap.cobromovil.add.AgregarComercio"
-    android:gravity="center_horizontal">
+    android:gravity="center_vertical|center_horizontal"
+    tools:context="com.czarzap.cobromovil.add.AgregarComercio">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,6 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
 
 
@@ -71,9 +71,8 @@
                 app:cpb_textIdle="AGREGAR COMERCIO"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:gravity="center|center_vertical"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp"  />
+                android:paddingRight="5dp"/>
 
             <LinearLayout
                 android:orientation="horizontal"

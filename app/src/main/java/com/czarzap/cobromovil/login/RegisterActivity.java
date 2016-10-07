@@ -34,7 +34,6 @@ public class RegisterActivity extends Activity {
     private EditText etNameAgent;
     private EditText etPassword;
     private EditText etCellPhone;
-    private RegisterService service;
     private DatabaseManager manager;
     private Integer empresa;
     private InAgentesMoviles inAgentesMoviles;
@@ -71,13 +70,7 @@ public class RegisterActivity extends Activity {
 
     private void initViews(){
 
-        Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
-              .baseUrl("https://www.sifi.com.mx:8443/SifiReceptoria/")
-//                .baseUrl("http://192.168.0.13:8081/SifiReceptoria/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        service = retrofit.create(RegisterService.class);
 
         manager = new DatabaseManager(this);            // Crear base de datos si no existe
 
@@ -116,6 +109,13 @@ public class RegisterActivity extends Activity {
     }
 
     private void getFolio(){
+        String url = manager.getWebService(1);
+        Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RegisterService service;
+        service = retrofit.create(RegisterService.class);
         Call<Integer> call = service.getFolio(empresa,inAgentesMoviles.getAm_numero());
         call.enqueue(new Callback<Integer>() {
             @Override
@@ -142,6 +142,13 @@ public class RegisterActivity extends Activity {
 
 
     private void ObtenerEmpresa(){
+    String url = manager.getWebService(1);
+        Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RegisterService service;
+        service = retrofit.create(RegisterService.class);
         String rfc = etRFC.getText().toString();
             Call<InEmpresas> call = service.getEmpresa(rfc);
             call.enqueue(new Callback<InEmpresas>() {
@@ -183,6 +190,13 @@ public class RegisterActivity extends Activity {
     }
 
     private void ObtenerWebService(){
+        Retrofit retrofit = new Retrofit.Builder()                          // Crear REST
+//                .baseUrl("https://www.sifi.com.mx:8443/SifiReceptoria/")
+                .baseUrl("http://192.168.0.13:8081/SifiReceptoria/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RegisterService service;
+        service = retrofit.create(RegisterService.class);
         Call<List<InWebServices>> call = service.getWebServices(etRFC.getText().toString(),  // Manda los datos a SifiReceptoria
                 inAgentesMoviles.getAm_numero(),
                 inAgentesMoviles.getAm_nombre(),
