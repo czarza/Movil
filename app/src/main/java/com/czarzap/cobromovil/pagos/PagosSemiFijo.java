@@ -11,10 +11,8 @@ import android.widget.Toast;
 
 
 import com.czarzap.cobromovil.beans.InComercios;
-import com.czarzap.cobromovil.main.RTApplication;
 import com.czarzap.cobromovil.menu.BaseActivity;
 import com.czarzap.cobromovil.utils.OfflineUtil;
-import com.czarzap.cobromovil.utils.ToastUtil;
 import com.czarzap.cobromovil.utils.Util;
 import com.dd.CircularProgressButton;
 import com.czarzap.cobromovil.DB.DatabaseManager;
@@ -31,7 +29,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import driver.Contants;
 import driver.HsBluetoothPrintDriver;
 
 public class PagosSemiFijo extends BaseActivity {

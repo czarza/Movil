@@ -17,20 +17,20 @@
     </style>
 
 
-    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
-        <item name="queryBackground">@color/orange_color</item>
-        <item name="submitBackground">@color/orange_color</item>
-        <item name="closeIcon">@android:drawable/ic_menu_close_clear_cancel</item>
-        <item name="goIcon">@drawable/ic_logo_sifi</item>
-        <item name="searchHintIcon">@null</item>
-        <item name="android:maxWidth">1000dp</item>
-    </style>
+    <!--<style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">-->
+        <!--<item name="queryBackground">@color/orange_color</item>-->
+        <!--<item name="submitBackground">@color/orange_color</item>-->
+        <!--<item name="closeIcon">@android:drawable/ic_menu_close_clear_cancel</item>-->
+        <!--<item name="goIcon">@drawable/ic_logo_sifi</item>-->
+        <!--<item name="searchHintIcon">@null</item>-->
+        <!--<item name="android:maxWidth">1000dp</item>-->
+    <!--</style>-->
 
     <style name="ThemeToolbar" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/primary</item>
         <item name="colorPrimary">@android:color/white</item>
         <item name="android:textColorSecondary">@color/primaryBlack</item>
-        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+        <!--<item name="searchViewStyle">@style/MySearchViewStyle</item>-->
     </style>
 
     <style name="rg_tab_bottom">

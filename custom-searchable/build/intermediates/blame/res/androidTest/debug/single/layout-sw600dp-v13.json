@@ -1,13 +1,5 @@
 [
     {
-        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
-        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Craft\\AndroidStudioProjects\\Movil\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.0\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
-    },
-    {
-        "merged": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
-        "source": "/Users/carloszarza/Projects/Movil/C:\\Users\\Alfredo\\AndroidStudioProjects\\RTPrinter\\custom-searchable\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.0\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
-    },
-    {
         "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/androidTest/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
         "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/design/24.2.0/res/layout-sw600dp-v13/design_layout_snackbar.xml"
     }

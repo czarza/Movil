@@ -7,18 +7,8 @@
     android:background="@drawable/fondo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    android:orientation="vertical"
+    android:isScrollContainer="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,8 +26,8 @@
                         android:id="@+id/etPropietario"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:textColor="@color/abc_input_method_navigation_guard"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
                         android:hint="@string/propietario"
                         android:textAllCaps="true"
                         android:inputType="textCapCharacters"
@@ -72,7 +62,6 @@
                         android:hint="@string/conductor"
                         android:inputType="textCapCharacters"
                         android:layout_below="@+id/frente"
-                        android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -94,7 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/etControl"
-                        android:textColor="@color/abc_input_method_navigation_guard"
+                        android:textColor="@color/black"
                         android:hint="@string/numero_de_control"
                         android:enabled="false"
                         android:layout_weight="1"
@@ -116,7 +105,7 @@
                         android:id="@+id/etLicencia"
                         android:inputType="number"
                         android:layout_weight="1"
-                        android:textColor="@color/abc_input_method_navigation_guard"
+                        android:textColor="@color/black"
                         android:hint="@string/ultima_licencia"
                         android:enabled="false"
                         android:gravity="center_vertical|center_horizontal"
@@ -143,7 +132,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/etPlaca"
-                        android:textColor="@color/abc_input_method_navigation_guard"
+                        android:textColor="@color/black"
                         android:hint="@string/placa"
                         android:layout_weight="1"
                         android:enabled="false"
@@ -164,7 +153,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/etCirculacion"
                         android:layout_weight="1"
-                        android:textColor="@color/abc_input_method_navigation_guard"
+                        android:textColor="@color/black"
                         android:hint="@string/tarjeta_circulacion"
                         android:gravity="center_vertical|center_horizontal"
                         android:textSize="25sp"
@@ -189,51 +178,73 @@
                     android:checked="true"
                     android:textSize="20sp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="5dp" />
+                    android:layout_margin="10dp" />
 
-                <com.dd.CircularProgressButton
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/estado_de_cuenta"
-                    android:id="@+id/bEstado"
-                    app:cpb_selectorIdle="@drawable/button"
-                    app:cpb_colorIndicator="@color/primary"
-                    app:cpb_colorProgress="@color/gray_bg"
-                    app:cpb_cornerRadius="12dp"
-                    android:textColor="@color/cpb_white"
-                    app:cpb_iconComplete="@mipmap/ic_action_accept"
-                    app:cpb_iconError="@mipmap/ic_action_cancel"
-                    app:cpb_textIdle="ESTADO DE CUENTA"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:textSize="18sp"
-                    android:visibility="invisible" />
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                <com.dd.CircularProgressButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/bImagen"
-                    android:textColor="@color/cpb_white"
-                    app:cpb_selectorIdle="@drawable/button"
-                    app:cpb_colorIndicator="@color/primary"
-                    app:cpb_colorProgress="@color/gray_bg"
-                    app:cpb_cornerRadius="12dp"
-                    app:cpb_iconComplete="@mipmap/ic_action_accept"
-                    app:cpb_iconError="@mipmap/ic_action_cancel"
-                    app:cpb_textIdle="VER IMAGEN"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:textSize="18sp"
-                    android:visibility="invisible" />
+                    <com.dd.CircularProgressButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bEstado"
+                        app:cpb_selectorIdle="@drawable/button"
+                        app:cpb_colorIndicator="@color/primary"
+                        app:cpb_colorProgress="@color/gray_bg"
+                        app:cpb_cornerRadius="12dp"
+                        android:textColor="@color/cpb_white"
+                        app:cpb_iconComplete="@mipmap/ic_action_accept"
+                        app:cpb_iconError="@mipmap/ic_action_cancel"
+                        app:cpb_textIdle="IMPRIMIR"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:textSize="18sp"
+                        android:visibility="invisible"
+                        android:layout_weight="1" />
 
+                    <com.dd.CircularProgressButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bImagen"
+                        android:textColor="@color/cpb_white"
+                        app:cpb_selectorIdle="@drawable/button"
+                        app:cpb_colorIndicator="@color/primary"
+                        app:cpb_colorProgress="@color/gray_bg"
+                        app:cpb_cornerRadius="12dp"
+                        app:cpb_iconComplete="@mipmap/ic_action_accept"
+                        app:cpb_iconError="@mipmap/ic_action_cancel"
+                        app:cpb_textIdle="VER IMAGEN"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:textSize="18sp"
+                        android:visibility="invisible"
+                        android:layout_weight="1" />
+
+                    <com.dd.CircularProgressButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bCobrar"
+                        android:textColor="@color/cpb_white"
+                        app:cpb_selectorIdle="@drawable/button"
+                        app:cpb_colorIndicator="@color/primary"
+                        app:cpb_colorProgress="@color/gray_bg"
+                        app:cpb_cornerRadius="12dp"
+                        app:cpb_iconComplete="@mipmap/ic_action_accept"
+                        app:cpb_iconError="@mipmap/ic_action_cancel"
+                        app:cpb_textIdle="COBRAR"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:textSize="18sp"
+                        android:visibility="invisible"
+                        android:layout_weight="1" />
+
+
+                </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-
 
 
 </LinearLayout>

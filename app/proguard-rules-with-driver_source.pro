@@ -15,11 +15,6 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
-
--keep class com.mocoo.hang.swipeback.**{*;}
--dontwarn com.mocoo.hang.swipeback.**
-#-keep class com.mocoo.hang.swipeback.app.**{*;}
-
 -keepclassmembers class com.mocoo.hang.rtprinter.driver.HsBluetoothPrintDriver$ConnectThread{
     com.mocoo.hang.rtprinter.driver.HsBluetoothPrintDriver$ConnectThread(***);
 }
@@ -32,15 +27,22 @@
 -keepclassmembers class com.mocoo.hang.rtprinter.driver.LabelBluetoothPrintDriver$AcceptThread{
     com.mocoo.hang.rtprinter.driver.LabelBluetoothPrintDriver$AcceptThread();
 }
--keep class org.apache.http.** { *; }
--dontwarn org.apache.http.**
--dontwarn android.net.**
+
 -keepattributes SourceFile,LineNumberTable
 -keep class com.parse.*{ *; }
 -dontwarn com.parse.**
+-keep class com.squareup.picasso.**
 -dontwarn com.squareup.picasso.**
+-keep class okio.**
+-dontwarn okio.**
+-keep class retrofit2.Platform$Java8
+-dontwarn retrofit2.Platform$Java8
+-keep class sun.misc.Unsafe
+-dontwarn sun.misc.Unsafe
+-keep class org.w3c.dom.bootstrap.DOMImplementationRegistry
+-dontwarn org.w3c.dom.bootstrap.DOMImplementationRegistry
+-keep zj.com.**
+-dontwarn zj.com.**
 -keepclasseswithmembernames class * {
     native <methods>;
 }
--dontwarn okio.**
--dontwarn retrofit2.Platform$Java8

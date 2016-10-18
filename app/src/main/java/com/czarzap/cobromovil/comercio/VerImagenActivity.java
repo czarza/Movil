@@ -11,15 +11,20 @@ import com.dd.CircularProgressButton;
 import com.squareup.picasso.Picasso;
 
 public class VerImagenActivity extends AppCompatActivity {
-String tipo,empresa,control;
+    String tipo,empresa,control,url;
+    CircularProgressButton bPrincipal , bConductor;
+    ImageView imageView;
     int onStartCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_imagen);
-        ImageView imageView = (ImageView) findViewById(R.id.ivImagen);
+        imageView = (ImageView) findViewById(R.id.ivImagen);
         CircularProgressButton bRegresar = (CircularProgressButton)findViewById(R.id.bRegresar);
+        bPrincipal = (CircularProgressButton) findViewById(R.id.bPrincipal);
+        bConductor = (CircularProgressButton) findViewById(R.id.bConductor);
+
         onStartCount = 1;
         if (savedInstanceState == null) // 1st time
         {
@@ -31,7 +36,7 @@ String tipo,empresa,control;
         }
 
         DatabaseManager manager = new DatabaseManager(this);
-        String url = manager.getWebService(2);
+        url = manager.getWebService(2);
         control = getIntent().getExtras().getString("control");                 // Leer los datos pasados por el QR
         tipo = getIntent().getExtras().getString("tipo");
         empresa = getIntent().getExtras().getString("empresa");// obtener el webService de Comercio
@@ -46,6 +51,31 @@ String tipo,empresa,control;
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+
+        bPrincipal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String campo = "images/comercio/"+empresa+"/"+tipo+control+"_1.png";
+                Log.d("url",url+campo);
+                Picasso.with(getApplicationContext())
+                        .load(url+campo)
+                        .resize(250, 200)
+                        .into(imageView);
+            }
+        });
+
+        bConductor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String campo = "images/comercio/"+empresa+"/"+tipo+control+"_2.png";
+                Log.d("url",url+campo);
+                Picasso.with(getApplicationContext())
+                        .load(url+campo)
+//                        .resize(300, 350)
+                        .into(imageView);
             }
         });
 

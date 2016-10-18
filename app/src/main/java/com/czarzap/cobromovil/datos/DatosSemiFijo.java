@@ -94,7 +94,7 @@ public class DatosSemiFijo extends BaseActivity{
                 comercio = util.getComercioOffline(getApplicationContext(),control,tipo);
                 if(comercio == null){                   // El QR no corresponde al Sistema
                     builder.setIcon(android.R.drawable.ic_dialog_alert);
-                    builder.setMessage("No existe el Coemrcio").setTitle("ERROR").setCancelable(false).setPositiveButton("Aceptar", new DialogInterface.OnClickListener()
+                    builder.setMessage("No existe el Comercio").setTitle("ERROR").setCancelable(false).setPositiveButton("Aceptar", new DialogInterface.OnClickListener()
                     {
                         public void onClick(DialogInterface dialog, int which) {
                             Intent menuIntent = new Intent(DatosSemiFijo.this,MenuActivity.class);

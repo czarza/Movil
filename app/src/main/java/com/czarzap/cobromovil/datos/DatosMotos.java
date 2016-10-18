@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -18,6 +17,7 @@ import com.czarzap.cobromovil.menu.BaseActivity;
 import com.czarzap.cobromovil.menu.MenuActivity;
 import com.czarzap.cobromovil.comercio.VerImagenActivity;
 import com.czarzap.cobromovil.R;
+import com.czarzap.cobromovil.pagos.PagosSemiFijo;
 import com.czarzap.cobromovil.service.DatosComercioService;
 import com.czarzap.cobromovil.utils.OfflineUtil;
 import com.czarzap.cobromovil.utils.Util;
@@ -40,7 +40,7 @@ public class DatosMotos extends BaseActivity {
     private EditText etLicencia;
     private EditText etPlaca;
     private EditText etCirculacion;
-    private CircularProgressButton bEstado,bImagen;
+    private CircularProgressButton bEstado,bImagen,bCobrar;
     private Switch sStatus;
     private InComercios comercio;
     private Integer control;
@@ -94,6 +94,7 @@ public class DatosMotos extends BaseActivity {
         etPlaca = (EditText) findViewById(R.id.etPlaca);
         bEstado   = (CircularProgressButton) findViewById(R.id.bEstado);
         bImagen   = (CircularProgressButton) findViewById(R.id.bImagen);
+        bCobrar   = (CircularProgressButton) findViewById(R.id.bCobrar);
         sStatus = (Switch) findViewById(R.id.sStatus);
         comercio = new InComercios();
 
@@ -107,7 +108,7 @@ public class DatosMotos extends BaseActivity {
                 comercio = util.getComercioOffline(getApplicationContext(),control,tipo);
                 if(comercio == null){                   // El QR no corresponde al Sistema
                     builder.setIcon(android.R.drawable.ic_dialog_alert);
-                    builder.setMessage("No existe el Coemrcio").setTitle("ERROR").setCancelable(false).setPositiveButton("Aceptar", new DialogInterface.OnClickListener()
+                    builder.setMessage("No existe Moto-Taxi").setTitle("ERROR").setCancelable(false).setPositiveButton("Aceptar", new DialogInterface.OnClickListener()
                     {
                         public void onClick(DialogInterface dialog, int which) {
                             Intent menuIntent = new Intent(DatosMotos.this,MenuActivity.class);
@@ -131,6 +132,9 @@ public class DatosMotos extends BaseActivity {
     }
 
     private void initComercio(){
+        control = comercio.getCom_control();
+        tipo = comercio.getCom_tipo();
+        empresa = comercio.getCom_empresa();
         loadImage();
         if (comercio.getCom_nombre_propietario() != null)            etPropietario.setText(comercio.getCom_nombre_propietario());
         if (comercio.getCom_domicilio_notificaciones() != null)      etDomicilio.setText(comercio.getCom_domicilio_notificaciones());
@@ -151,14 +155,20 @@ public class DatosMotos extends BaseActivity {
                 util.printEstadoCuentaMoto(comercio,getApplicationContext(),hsBluetoothPrintDriver);
             }
         });
+        bCobrar.setVisibility(View.VISIBLE);
+        bCobrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent comercioIntent = new Intent(DatosMotos.this,PagosSemiFijo.class);
+                comercioIntent.putExtra("comercio",comercio);
+                DatosMotos.this.startActivity(comercioIntent);
+            }
+        });
     }
 
 
     private void loadImage(){
         DatabaseManager manager = new DatabaseManager(this);
-        control = Integer.valueOf(getIntent().getExtras().getString("control"));                 // Leer los datos pasados por el QR
-        tipo = getIntent().getExtras().getString("tipo");
-        empresa = Integer.valueOf(getIntent().getExtras().getString("empresa"));
 
         String url = manager.getWebService(1);
             Retrofit retrofit = new Retrofit.Builder()

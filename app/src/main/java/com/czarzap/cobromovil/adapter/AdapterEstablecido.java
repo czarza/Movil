@@ -26,7 +26,7 @@ import java.util.List;
 public class AdapterEstablecido extends RecyclerView.Adapter<AdapterEstablecido.MyViewHolder> {
 
     private List<InComercios> information;
-    private String nombreRuta,tipo,campo;
+    private String nombreRuta,campo;
     public AdapterEstablecido(List<InComercios> information) {
         this.information = information;
     }
@@ -50,7 +50,6 @@ public class AdapterEstablecido extends RecyclerView.Adapter<AdapterEstablecido.
         }
 
         String giro = current.getGiros();
-        tipo = current.getCom_tipo();
         campo = tipoComercio(current.getCom_tipo());
         if(nombreRuta != null) campo += " - " + nombreRuta;
         if(current.getCom_denominacion()!= null) campo += " - " + current.getCom_denominacion();

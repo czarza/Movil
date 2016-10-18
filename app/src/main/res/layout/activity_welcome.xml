@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_welcome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.czarzap.cobromovil.login.WelcomeActivity"
+    android:background="@drawable/fondo">
+
+    <TextView
+        android:text="TEL. 594 9571 312"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:layout_weight="0.00"
+        android:typeface="serif"
+        android:fontFamily="monospace"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textStyle="normal|bold"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/textView4"
+        android:textColor="@color/c_primary_dark" />
+
+    <TextView
+        android:text="www.sifi.com.mx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_weight="0.00"
+        android:typeface="serif"
+        android:fontFamily="monospace"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textStyle="normal|bold"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/c_primary_dark" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/ic_intsol_sifi"
+        android:contentDescription="@string/logo_intsol"
+        android:layout_marginTop="91dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>
