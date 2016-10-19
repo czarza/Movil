@@ -51,7 +51,7 @@ public class Util {
         voidLine(hsBluetoothPrintDriver);
         printTitle("Estado de Cuenta",hsBluetoothPrintDriver);
         voidLine(hsBluetoothPrintDriver);
-        printLine("# Control: " + comercio.getCom_control(),hsBluetoothPrintDriver);
+        printLineBold("# Control: " + comercio.getCom_control(),hsBluetoothPrintDriver);
         printLine("Propietario: " + comercio.getCom_nombre_propietario(),hsBluetoothPrintDriver);
         printLine("Ocupante: " + comercio.getCom_ocupante(),hsBluetoothPrintDriver);
         printLineBold("Ultima Licencia: " + comercio.getCom_ult_eje(),hsBluetoothPrintDriver);
@@ -83,7 +83,7 @@ public class Util {
         voidLine(hsBluetoothPrintDriver);
         printTitle("Estado de Cuenta",hsBluetoothPrintDriver);
         voidLine(hsBluetoothPrintDriver);
-        printLine("# Control: " + comercio.getCom_control(),hsBluetoothPrintDriver);
+        printLineBold("# Control: " + comercio.getCom_control(),hsBluetoothPrintDriver);
         printLine("Propietario: " + comercio.getCom_nombre_propietario(),hsBluetoothPrintDriver);
         printLine("Ocupante: " + comercio.getCom_ocupante(),hsBluetoothPrintDriver);
         printLineBold("Placa: " + comercio.getCom_num_placa(),hsBluetoothPrintDriver);
@@ -124,7 +124,7 @@ public class Util {
         printLineBold("# Pago: " + pagos.getCac_numero_pago(),hsBluetoothPrintDriver);
         voidLine(hsBluetoothPrintDriver);
         printLineBold("Comercio: " + tipoComercio(comercio.getCom_tipo()),hsBluetoothPrintDriver);
-        printLine("# Control: " + comercio.getCom_control(),hsBluetoothPrintDriver);
+        printLineBold("# Control: " + comercio.getCom_control(),hsBluetoothPrintDriver);
 
         if(comercio.getNombreRuta() == null) printLine("Ruta: " + comercio.getCom_ruta(),hsBluetoothPrintDriver);
             else  printLine("Ruta: " + comercio.getNombreRuta(),hsBluetoothPrintDriver);
@@ -133,7 +133,7 @@ public class Util {
         printLine("Aportacion: " + pagos.getCac_total(),hsBluetoothPrintDriver);
         printLine("Fecha: " + pagos.getFecha_pago(),hsBluetoothPrintDriver);
         printLine("Agente: " + agente,hsBluetoothPrintDriver);
-        if (!pagos.getCac_notas().isEmpty()) printLine("Notas: " + pagos.getCac_notas(),hsBluetoothPrintDriver);
+        if (!pagos.getCac_notas().isEmpty()) printLineBold("Notas: " + pagos.getCac_notas(),hsBluetoothPrintDriver);
         printqr(qr,hsBluetoothPrintDriver);
         lastLine(hsBluetoothPrintDriver);
     }
@@ -149,6 +149,10 @@ public class Util {
 
         } else if (tipo.equals("A")) {
             campo = "Ambulante";
+
+        }
+        else if (tipo.equals("M")) {
+            campo = "Moto - Taxi";
 
         }
         return campo;
