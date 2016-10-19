@@ -10,6 +10,7 @@ import com.czarzap.cobromovil.DB.DatabaseManager;
 import com.czarzap.cobromovil.corte.ReporteActivity;
 import com.czarzap.cobromovil.R;
 import com.czarzap.cobromovil.add.Agregar;
+import com.czarzap.cobromovil.datos.ComercioNoRegistrado;
 import com.czarzap.cobromovil.menu.BaseActivity;
 import com.czarzap.cobromovil.search.BuscarContribuyente;
 import com.czarzap.cobromovil.utils.OfflineUtil;
@@ -21,6 +22,7 @@ public class TipoComercioActivity extends BaseActivity {
     private Button bFijo;
     private Button bCorte;
     private Button bPagos;
+    private Button bCobrar;
     private Integer empresa;
     int onStartCount = 0;
     OfflineUtil util = new OfflineUtil();
@@ -50,6 +52,7 @@ public class TipoComercioActivity extends BaseActivity {
         bSemifijo     = (Button) findViewById(R.id.bSemiFijo);
         bCorte = (Button) findViewById(R.id.bCorte);
         bPagos = (Button) findViewById(R.id.bPagos);
+        bCobrar = (Button) findViewById(R.id.bCobrar);
 //        bAdd.setEnabled(false);
         loadActivity();
     }
@@ -152,6 +155,17 @@ public class TipoComercioActivity extends BaseActivity {
             }
         });
 
+        bCobrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent comercioIntent = new Intent(TipoComercioActivity.this,ComercioNoRegistrado.class);
+                TipoComercioActivity.this.startActivity(comercioIntent);
+            }
+        });
+
+
     }
+
+
 
 }

@@ -152,7 +152,7 @@ public class Util {
 
         }
         else if (tipo.equals("M")) {
-            campo = "Moto - Taxi";
+            campo = "Bici - Taxi";
 
         }
         return campo;
