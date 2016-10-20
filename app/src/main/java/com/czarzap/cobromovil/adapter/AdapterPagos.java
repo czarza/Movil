@@ -74,7 +74,7 @@ public class AdapterPagos extends RecyclerView.Adapter<AdapterPagos.MyViewHolder
                 break;
             case "A": campo = "Ambulante";
                 break;
-            case "M": campo = "Moto-Taxis";
+            case "M": campo = "Bici-Taxi";
                 break;
         }
         return campo;
