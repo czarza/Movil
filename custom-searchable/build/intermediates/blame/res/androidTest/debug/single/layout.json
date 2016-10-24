@@ -180,12 +180,12 @@
         "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/design/24.2.0/res/layout/design_bottom_sheet_dialog.xml"
     },
     {
-        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/androidTest/debug/layout/abc_action_bar_up_container.xml",
-        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/layout/abc_action_bar_up_container.xml"
-    },
-    {
         "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/androidTest/debug/layout/design_layout_tab_text.xml",
         "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/design/24.2.0/res/layout/design_layout_tab_text.xml"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/androidTest/debug/layout/abc_action_bar_up_container.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/layout/abc_action_bar_up_container.xml"
     },
     {
         "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/androidTest/debug/layout/notification_media_action.xml",

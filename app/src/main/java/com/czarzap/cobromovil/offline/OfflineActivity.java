@@ -212,7 +212,11 @@ public class OfflineActivity extends BaseActivity {
     private void getComercios() throws IOException {
         if(util.fileExistsComercio(getApplicationContext())){
             List<InComercios> enviarComercios = util.comerciosData(getApplicationContext());
-            enviarComercios.get(0).setAgente(manager.getAgente());
+
+            if(!enviarComercios.isEmpty()){
+                enviarComercios.get(0).setAgente(manager.getAgente());
+            }
+            
             Gson gson = new Gson();
 
             String json = gson.toJson(enviarComercios);

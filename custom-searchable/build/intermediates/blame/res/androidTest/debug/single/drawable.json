@@ -4,12 +4,12 @@
         "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/drawable/abc_textfield_search_material.xml"
     },
     {
-        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/androidTest/debug/drawable/abc_btn_borderless_material.xml",
-        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/drawable/abc_btn_borderless_material.xml"
-    },
-    {
         "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/androidTest/debug/drawable/arrow_left_icon.png",
         "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/bundles/debug/res/drawable/arrow_left_icon.png"
+    },
+    {
+        "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/androidTest/debug/drawable/abc_btn_borderless_material.xml",
+        "source": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/res/drawable/abc_btn_borderless_material.xml"
     },
     {
         "merged": "/Users/carloszarza/Projects/Movil/custom-searchable/build/intermediates/res/merged/androidTest/debug/drawable/design_fab_background.xml",
